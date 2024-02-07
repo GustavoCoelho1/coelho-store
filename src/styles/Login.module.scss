@@ -1,0 +1,64 @@
+.mainBlock {
+    @apply min-h-screen
+        flex flex-col 
+        md:flex-row;
+}
+
+.presentationBlock {
+    @apply w-full h-36 p-12
+        flex items-center justify-center
+        bg-violet-900
+        md:min-h-screen md:h-full md:w-1/2;
+}
+
+.presentationInner {
+    @apply w-full h-full
+        flex flex-col items-center justify-center;
+}
+
+.titulo {
+    @apply text-5xl mb-4
+        text-center font-bold
+        text-white;
+}
+
+.subtitulo {
+    @apply text-sm text-center font-bold text-violet-400;
+}
+
+.formBlock {
+    @apply w-full min-h-[calc(100vh-9rem)] py-12
+        flex flex-col items-center justify-center
+        bg-violet-200
+        md:items-center md:min-h-screen xl:p-12 md:w-1/2;
+}
+
+.signCallback {
+    @apply w-4/5 mb-4 p-6 rounded-3xl
+        flex justify-center
+        bg-white shadow-xl shadow-violet-900/20
+        sm:w-4/5 lg:w-3/5;
+}
+
+.form {
+    @apply w-4/5 h-fit p-8 rounded-3xl
+        flex flex-col items-center
+        bg-white shadow-xl shadow-violet-900/20
+        sm:w-4/5 lg:w-3/5;
+}
+
+.inputsBlock {
+    @apply w-11/12 flex flex-col items-start;
+}
+
+.signMessage {
+    @apply text-sm mt-8 
+        text-violet-900;
+}
+
+.btnSubmit {
+    @apply w-11/12 tracking-wider py-3 rounded-3xl
+        border border-violet-600 text-violet-600
+        hover:bg-violet-600 hover:text-white
+        transition ease-out duration-700;
+}

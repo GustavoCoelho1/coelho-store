@@ -1,0 +1,184 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider          = "postgresql"
+  url               = env("DATABASE_URL")
+  shadowDatabaseUrl = env("SHADOW_DATABASE_URL")
+}
+
+model Usuario {
+  user_cod   String @id @default(uuid()) @db.Uuid
+  user_nome  String @unique
+  user_email String @unique
+  user_senha String
+
+  cliente            Cliente?
+  produto_favoritado ProdutoFavoritado[]
+  avaliacoes       ProdutoAvaliacao[]
+
+  @@map("usuarios")
+}
+
+model Cliente {
+  cli_cod     String @id @default(uuid()) @db.Uuid
+  cli_nome    String
+  cli_idade   Int
+  cli_celular String @unique @db.VarChar(15)
+
+  user_cod_fk String  @unique @db.Uuid
+  usuario     Usuario @relation(fields: [user_cod_fk], references: [user_cod], onDelete: Cascade)
+
+  pedidos          Pedido[]
+  cliente_endereco ClienteEndereco[]
+
+  @@map("clientes")
+}
+
+model Endereco {
+  end_cod    String @id @default(uuid()) @db.Uuid
+  end_cep    String @db.VarChar(9)
+  end_bairro String
+  end_rua    String
+  end_ruanum Int
+  end_cidade String
+  end_estado String
+
+  cliente_endereco ClienteEndereco[]
+
+  @@map("enderecos")
+}
+
+model Pedido {
+  ped_cod        String       @id @default(uuid()) @db.Uuid
+  ped_data       DateTime     @default(now())
+  ped_status     PedidoStatus @default(OPEN)
+  ped_valortotal Float
+
+  cli_cod_fk String  @db.Uuid
+  cliente    Cliente @relation(fields: [cli_cod_fk], references: [cli_cod], onDelete: Cascade)
+
+  item_pedido ItemPedido[]
+
+  @@map("pedidos")
+}
+
+model Produto {
+  prod_cod       String   @id @default(uuid()) @db.Uuid
+  prod_nome      String
+  prod_descricao String
+  prod_codbarra  String   @unique
+  prod_preco     Decimal
+  prod_estoque   Int
+  prod_dtcriacao DateTime @default(now())
+
+  cat_cod_fk String    @db.Uuid
+  categoria  Categoria @relation(fields: [cat_cod_fk], references: [cat_cod], onDelete: Cascade)
+
+  marca_cod_fk String @db.Uuid
+  marca        Marca  @relation(fields: [marca_cod_fk], references: [marca_cod], onDelete: Cascade)
+
+  item_pedido        ItemPedido[]
+  produto_avaliacoes ProdutoAvaliacao[]
+  produto_favoritado ProdutoFavoritado[]
+  produto_imagem     ProdutoImagem[]
+
+  @@map("produtos")
+}
+
+model Marca {
+  marca_cod  String @id @default(uuid()) @db.Uuid
+  marca_nome String @unique
+
+  produtos Produto[]
+
+  @@map("marcas")
+}
+
+model Categoria {
+  cat_cod  String @id @default(uuid()) @db.Uuid
+  cat_nome String @unique
+
+  produtos Produto[]
+
+  @@map("categorias")
+}
+
+model ItemPedido {
+  item_cod String @id @default(uuid()) @db.Uuid
+
+  item_quantidade  Int
+  item_descricao   String
+  item_vlrunitario Float
+  item_vlrtotal    Float
+
+  prod_cod_fk String  @db.Uuid
+  produto     Produto @relation(fields: [prod_cod_fk], references: [prod_cod], onDelete: Cascade)
+
+  ped_cod_fk String @db.Uuid
+  pedido     Pedido @relation(fields: [ped_cod_fk], references: [ped_cod], onDelete: Cascade)
+
+  @@map("itens_pedido")
+}
+
+model ClienteEndereco {
+  cliend_cod String @id @default(uuid()) @db.Uuid
+
+  cli_cod_fk String  @db.Uuid
+  cliente    Cliente @relation(fields: [cli_cod_fk], references: [cli_cod], onDelete: Cascade)
+
+  end_cod_fk String   @db.Uuid
+  endereco   Endereco @relation(fields: [end_cod_fk], references: [end_cod], onDelete: Cascade)
+
+  @@map("clientes_enderecos")
+}
+
+model ProdutoAvaliacao {
+  avaliacao_cod        String @id @default(uuid()) @db.Uuid
+  avaliacao_estrelas   Int
+  avaliacao_comentario String
+  avaliacao_data       DateTime @default(now())
+
+  prod_cod_fk String  @db.Uuid
+  produto     Produto @relation(fields: [prod_cod_fk], references: [prod_cod], onDelete: Cascade)
+
+   user_cod_fk String  @db.Uuid
+  usuario     Usuario @relation(fields: [user_cod_fk], references: [user_cod], onDelete: Cascade)
+
+  @@map("produto_avaliacao")
+}
+
+model ProdutoFavoritado {
+  fav_cod    String  @id @default(uuid()) @db.Uuid
+  fav_active Boolean @default(true)
+
+  prod_cod_fk String  @db.Uuid
+  produto     Produto @relation(fields: [prod_cod_fk], references: [prod_cod], onDelete: Cascade)
+
+  user_cod_fk String  @db.Uuid
+  usuario     Usuario @relation(fields: [user_cod_fk], references: [user_cod], onDelete: Cascade)
+
+  @@map("produto_favoritado")
+}
+
+model ProdutoImagem {
+  img_cod      String @id @default(uuid()) @db.Uuid
+  img_ordem    Int
+  img_link     String
+  img_position String @default("center")
+
+  prod_cod_fk String  @db.Uuid
+  produto     Produto @relation(fields: [prod_cod_fk], references: [prod_cod], onDelete: Cascade)
+
+  @@map("produto_imagem")
+}
+
+enum PedidoStatus {
+  OK
+  OPEN
+  DELETED
+}

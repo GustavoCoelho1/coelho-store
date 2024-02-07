@@ -1,0 +1,10 @@
+.itemImg {
+    min-width: 7rem;
+    @apply relative flex h-24 items-center justify-center rounded-2xl sm:h-28 sm:w-28;
+
+    @media (max-width: 640px) {
+        & {
+            min-width: 6rem;
+        }
+    }
+}

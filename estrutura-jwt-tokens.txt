@@ -1,0 +1,10 @@
+Tentar ler -> AccessToken
+? Autenticado = true
+
+: Tentar ler -> Refresh Token
+? Gerar novo AccessToken -> Autenticado = true
+
+: Redirecionar para Login -> (Se credenciais corretas)
+? Gerar novo AccessToken e RefreshToken -> Autenticado = true
+
+

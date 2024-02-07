@@ -1,0 +1,17 @@
+
+version: '3.1'
+
+services:
+
+  db:
+    image: postgres:14.2-alpine
+    restart: always
+    ports:
+      - "5432:5432"
+    env_file:
+      - .env
+    volumes:
+      - my-databases:/db/aplicando-fullstack
+
+volumes:
+  my-databases:

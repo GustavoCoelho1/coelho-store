@@ -1,0 +1,78 @@
+.container {
+    @apply relative hidden min-h-screen
+        flex-col items-center justify-center bg-violet-900
+        p-4
+        transition-all duration-300 ease-in-out
+        sm:flex;
+}
+
+.mobile {
+    @apply fixed
+        top-3 right-3 z-10 flex cursor-pointer
+        rounded-full bg-violet-900 p-3 text-xl shadow-sm
+        shadow-violet-400/90 sm:hidden;
+}
+
+.closeMobile {
+    @apply flex w-full bg-violet-900 p-4 text-2xl text-white;
+}
+
+.mobileSideLinkContainer {
+    @apply fixed top-0 right-0 z-10 flex
+        h-screen w-full flex-col items-center bg-violet-900;
+}
+
+.logo {
+    @apply mb-4 text-xl text-white;
+}
+
+.userContainer {
+    @apply mb-6 flex
+        w-full flex-col items-center;
+}
+
+.sideLinkContainer {
+    @apply flex  w-full
+        cursor-pointer
+        rounded-xl p-3 text-white
+        transition
+        duration-300 hover:bg-violet-800;
+}
+
+.sideLinks {
+    @apply flex
+        w-full flex-col justify-center;
+}
+
+.sideLinkInner {
+    @apply flex 
+        w-28 items-center;
+}
+
+.minimizeButton {
+    @apply absolute top-3 -right-4;
+}
+
+.subtitle {
+    @apply mt-6 mb-2 text-sm text-violet-500;
+}
+
+.userName {
+    @apply text-xl text-white;
+}
+
+.userImg {
+    @apply relative mb-4 h-20 w-20 text-white;
+}
+
+.minimizeContainer {
+    @apply flex h-9 w-9
+        cursor-pointer items-center justify-center
+        rounded-full bg-white shadow-sm
+        shadow-violet-600;
+
+    & > svg {
+        @apply text-2xl text-violet-900
+        transition-all duration-300 ease-in-out;
+    }
+}
