@@ -55,7 +55,7 @@ Porém, como as tecnologias eram muito novas para mim, o nível de complexidade 
 
 Embora isso, para os fins de aprendizado que era ideia principal, foi ótimo. Esse foi um dos meus projetos mais ambiciosos, e para enfrentar tantas dificuldades no projeto teve sim momentos de desanimo, porém depois de um determinado tempo consegui chegar em um resultado que me agradou, e todo esse processo de criação me ensinou muitas coisas.
 
-![ibmWalletPrints](https://github.com/GustavoCoelho1/ibm-wallet/assets/92497249/5fec03d6-a55c-4c6a-9be5-5dc183ed5fcf)
+<!-- ![ibmWalletPrints](https://github.com/GustavoCoelho1/ibm-wallet/assets/92497249/5fec03d6-a55c-4c6a-9be5-5dc183ed5fcf) -->
 
 <!--Here's a blank template to get started: To avoid retyping too much info. Do a search and replace with your text editor for the following: `github_username`, `repo_name`, `twitter_handle`, `linkedin_username`, `email_client`, `email`, `project_title`, `project_description`-->
 
@@ -90,7 +90,7 @@ Para o checkout dos produtos é utilizado a API de checkout do Stripe e para o a
 <p align="right">(<a href="#readme-top">Voltar ao topo</a>)</p>
 
 
-
+<!--
 
 ## Para começar
 
@@ -261,7 +261,7 @@ Exemplo:
 
 <p align="right">(<a href="#readme-top">Voltar ao topo</a>)</p>
 
-
+-->
 
 ## Licença MIT
 A permissão é concedida, gratuitamente, a qualquer pessoa que obtenha uma cópia deste arquivo, sem restrição nos direitos de usar, copiar, modificar e mesclar.
