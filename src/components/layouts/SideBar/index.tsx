@@ -142,12 +142,12 @@ const SideBar = () => {
                 </motion.div>
 
                 <ul className={styles.sideLinks}>
-                    <SideBarButton
+                    {/* <SideBarButton
                         href="/admin/Dashboard"
                         active={isActive}
                         title="Dashboard"
                         icon={<BiHomeAlt />}
-                    />
+                    /> */}
 
                     <SideBarButton
                         href="/admin/Pedidos/"

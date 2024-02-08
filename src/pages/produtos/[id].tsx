@@ -215,7 +215,7 @@ const Produto: NextPage<Props> = ({ product }) => {
                             animate={imgLoading ? 'loading' : 'loaded'}
                             variants={mainImgVariants}
                             style={{ maxHeight: '650px' }}
-                            className="hidden h-3/5 w-full self-center rounded-xl object-cover md:flex md:h-4/5"
+                            className="hidden h-3/5 w-full self-center rounded-xl object-contain md:flex md:h-4/5"
                             src={activeImage}
                             alt=""
                         />
@@ -232,10 +232,10 @@ const Produto: NextPage<Props> = ({ product }) => {
                                             : 'p-0';
                                     return (
                                         <div
-                                            key={idx}
-                                            className={`h-3/5 w-full cursor-pointer rounded-xl p-3 ${p}`}
+                                            key={'prod-slider-' + idx}
+                                            className={`h-[400px] w-full cursor-pointer rounded-xl p-3 ${p}`}
                                         >
-                                            <div className="relative flex h-full w-full items-center justify-center overflow-hidden rounded-xl">
+                                            <div className="relative flex h-full w-full items-center justify-center overflow-hidden rounded-xl border">
                                                 <img
                                                     className="h-full w-full rounded-xl object-contain"
                                                     src={img.img_link}
@@ -264,10 +264,10 @@ const Produto: NextPage<Props> = ({ product }) => {
                                             onClick={() => switchMainImg(img)}
                                             className={`h-48 w-full cursor-pointer rounded-xl p-3 ${p} sm:h-48`}
                                         >
-                                            <div className="relative flex h-full w-full items-center justify-center overflow-hidden rounded-xl">
+                                            <div className="relative flex h-full w-full items-center justify-center overflow-hidden rounded-xl border">
                                                 <motion.img
                                                     whileHover={{ scale: 1.2 }}
-                                                    className="h-48 w-full rounded-xl object-cover"
+                                                    className="h-48 w-full rounded-xl object-contain"
                                                     src={img.img_link}
                                                 />
                                             </div>
@@ -277,7 +277,7 @@ const Produto: NextPage<Props> = ({ product }) => {
                             </Slider>
                         </div>
 
-                        <h3 className="mt-4 mb-2 text-center text-violet-500 md:mb-2">
+                        <h3 className="mb-2 mt-4 text-center text-violet-500 md:mb-2">
                             {produto.marca.marca_nome}
                         </h3>
                         <h2 className="mb-3 text-center text-2xl font-bold uppercase text-violet-900 xl:text-3xl">
@@ -299,24 +299,24 @@ const Produto: NextPage<Props> = ({ product }) => {
                             </span>
                         </button>
 
-                        <h1 className="mt-6 mb-6 text-center text-4xl text-violet-500">
+                        <h1 className="mb-6 mt-6 text-center text-4xl text-violet-500">
                             {'R$' +
                                 parseFloat(
                                     produto.prod_preco.toString(),
                                 ).toFixed(2)}
                         </h1>
 
-                        <span className="mt-2 mb-10 text-justify text-lg text-violet-900">
+                        <span className="mb-10 mt-2 text-justify text-lg text-violet-900">
                             {produto.prod_descricao}
                         </span>
 
                         <div className="mt-4 flex w-full items-center">
-                            <button className="text-md w-11/12 self-end rounded-full bg-violet-500 py-6 px-4 text-white sm:text-xl">
+                            <button className="text-md w-11/12 self-end rounded-full bg-violet-500 px-4 py-6 text-white sm:text-xl">
                                 Comprar agora
                             </button>
                             <button
                                 onClick={() => setAddToCarrinhoVisible(true)}
-                                className="ml-4 mr-2 flex items-center justify-center rounded-full border border-violet-600 bg-violet-500 py-6 px-6 text-2xl text-white"
+                                className="ml-4 mr-2 flex items-center justify-center rounded-full border border-violet-600 bg-violet-500 px-6 py-6 text-2xl text-white"
                             >
                                 <MdAddShoppingCart title="Adicionar produto ao carrinho" />
                             </button>

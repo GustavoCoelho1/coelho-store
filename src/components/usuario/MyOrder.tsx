@@ -43,7 +43,10 @@ const MyOrder: React.FC<Props> = ({ client }) => {
                 <div>
                     {data.TODOS_PEDIDOS_CLIENTE.map((pedido: iPedido) => {
                         return (
-                            <div className="flex w-full rounded-3xl p-4 shadow-sm">
+                            <div
+                                key={`pedido-${pedido.ped_cod}`}
+                                className="flex w-full rounded-3xl p-4 shadow-sm"
+                            >
                                 <div className="relative h-20 w-20">
                                     <img
                                         className="absolute h-full w-full rounded-2xl object-cover"

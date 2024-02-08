@@ -62,7 +62,7 @@ const Login: NextPageWithLayout = () => {
             const nextPath = pageFrom
                 ? pageFrom
                 : session.data.user.role === 'admin'
-                ? '/admin/Dashboard'
+                ? '/admin/Pedidos'
                 : '/Home';
 
             Router.push(nextPath);

@@ -1,4 +1,4 @@
-import { Pedido, prisma, PrismaClient } from '@prisma/client';
+import { Pedido, PrismaClient } from '@prisma/client';
 import { iProdutoCarrinho } from 'app/carrinho.store';
 import stripeClient from 'libs/stripe';
 import Stripe from 'stripe';

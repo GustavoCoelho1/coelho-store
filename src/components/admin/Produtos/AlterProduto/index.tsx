@@ -156,8 +156,6 @@ const AlterProdutoForm: React.FC<Props> = ({
                     const uploadTask = uploadBytes(storageRef, image.file);
 
                     uploadTask.then(async (snapshot) => {
-                        console.log(snapshot);
-
                         const url = await getDownloadURL(snapshot.ref);
 
                         const { data: imgData } = await GQLClient.mutate({

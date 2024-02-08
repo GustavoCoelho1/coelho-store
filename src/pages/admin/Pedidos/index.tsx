@@ -143,7 +143,7 @@ const Pedidos: NextPage & AuthProps = () => {
                             />
 
                             <div className="mt-6 flex">
-                                <div
+                                {/* <div
                                     onClick={() => handleAddClick()}
                                     className="mx-4 sm:mx-8"
                                 >
@@ -151,7 +151,7 @@ const Pedidos: NextPage & AuthProps = () => {
                                         icon={<BiAddToQueue />}
                                         title={'Adicionar'}
                                     />
-                                </div>
+                                </div> */}
                                 <div className="mx-4 sm:mx-8">
                                     <ActionButton
                                         icon={<BiEdit />}
