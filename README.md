@@ -404,6 +404,6 @@ Gustavo Coelho
 * E-mail: <a href="mailto:gustavocoelho1412@gmail.com">gustavocoelho1412@gmail.com</a>
 * Repositório: <a href="https://gustavo-coelho-portfolio.vercel.app/">Gustavo Coelho - Repositório</a>
 
-🔗 Link do projeto: [github.com/GustavoCoelho1/ibm-wallet](https://github.com/GustavoCoelho1/ibm-wallet)
+🔗 Link do projeto: [github.com/GustavoCoelho1/coelho-store](https://github.com/GustavoCoelho1/coelho-store)
 
 <p align="right">(<a href="#readme-top">Voltar ao topo</a>)</p>
