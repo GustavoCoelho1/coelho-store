@@ -9,7 +9,7 @@
 <br />
 <div align="center">
   
-<!--<img src="https://github.com/GustavoCoelho1/ibm-wallet/assets/92497249/fa47c396-619c-4c77-be57-3103a954c7af" alt="Logo" width="100" height="100">-->
+<!--<img src="" alt="Logo" width="100" height="100">-->
   
 
 <h3 align="center">Coelho Store</h3>
@@ -55,7 +55,8 @@ Porém, como as tecnologias eram muito novas para mim, o nível de complexidade 
 
 Embora isso, para os fins de aprendizado que era ideia principal, foi ótimo. Esse foi um dos meus projetos mais ambiciosos, e para enfrentar tantas dificuldades no projeto teve sim momentos de desanimo, porém depois de um determinado tempo consegui chegar em um resultado que me agradou, e todo esse processo de criação me ensinou muitas coisas.
 
-<!-- ![ibmWalletPrints](https://github.com/GustavoCoelho1/ibm-wallet/assets/92497249/5fec03d6-a55c-4c6a-9be5-5dc183ed5fcf) -->
+![coelho-store-fotos](https://github.com/GustavoCoelho1/coelho-store/assets/92497249/4e4902a0-552a-43cb-b3a6-3c60d0ff542c)
+
 
 <!--Here's a blank template to get started: To avoid retyping too much info. Do a search and replace with your text editor for the following: `github_username`, `repo_name`, `twitter_handle`, `linkedin_username`, `email_client`, `email`, `project_title`, `project_description`-->
 
@@ -89,82 +90,54 @@ Para o checkout dos produtos é utilizado a API de checkout do Stripe e para o a
 
 <p align="right">(<a href="#readme-top">Voltar ao topo</a>)</p>
 
-
-<!--
-
 ## Para começar
 
 Para configurar e rodar o projeto localmente vamos precisar seguir alguns passos.
 
-### Pré-requisitos do Front-end (Angular)
+### Pré-requisitos
 * Node.js  
 O angular é construído usando o Node.js e npm (Node Package Manager). Certifique-se de ter o Node.js instalado, pois o npm é incluído com ele. Clique <a href="https://nodejs.org/en">aqui</a> para instalar.
 
 * npm  
-Após instalado o node, abra o terminal do seu computador e rode o seguinte comando:
+Após instalado o node, abra o terminal do seu computador e rode o seguinte comando para instalar a última versão do npm
   ```sh
   npm install npm@latest -g
   ```
 
-* Angular CLI  
-Instale a Angular CLI (Command Line Interface) globalmente. Isso facilita a criação e gerenciamento de projetos Angular.
-  ```sh
-  npm install -g @angular/cli
-  ```
+* PostgreSQL  
+O banco de dados do aplicativo é o Postgres. Certifique-se de ter uma instância do banco de dados rodando antes da instalação do projeto. Clique <a href="https://nodejs.org/en">aqui</a> instalar o PostgreSQL.
 
+* Projeto Stripe  
+Para fazer o Checkout dos produtos é necessário ter um projeto criado no Stripe. Clique <a href="https://nodejs.org/en">aqui</a> para criar uma conta e criar um projeto.
 
+* Projeto Firebase  
+Para o armazenamento de imagem dos produtos é necessário ter um projeto criado no Firebase. Clique <a href="https://stripe.com/br">aqui</a> para criar uma conta e criar um projeto.
 
-
-### Pré-requisitos do Back-end (Spring)
-<a name="pre-requisitos"></a>
-* Java Development Kit (JDK)  
-Spring Boot é baseado em Java, então você precisará do JDK instalado. Certifique-se de usar uma versão suportada pelo Spring Boot (O projeto utiliza a versão 17 do java). Clique <a href="https://www.oracle.com/br/java/technologies/downloads/#java17">aqui</a> para instalar.
-
-* Banco de dados SQL  
-O projeto utiliza banco de dados relacional, então é recomendado ter o banco de dados instalado e configurado corretamente. Clique <a href="https://www.mysql.com/downloads/">aqui</a> para instalar o banco MySql
-
-### Instalação back-end
-<a name="instalacao"></a>
-1. Clone o repositório da API
-   ```sh
-   git clone https://github.com/GustavoCoelho1/ibm-wallet-api/
-   ```
-2. Instale/atualize os novos pacotes Maven em sua IDE.
-3. Seguindo a rota `/src/main/src/main/resources` no arquivo `application.yml` defina o nome de suas variáveis de ambiente. O padrão que está no arquivo é:
-   ```yml
-   spring:
-     datasource:
-       url: ${DB_URL} ## Url para o banco de dados. Padrão MySql: "jdbc:mysql://localhost:3306/meu_banco_de_dados?user=usuario&password=senha"
-       driver-class-name: ${DB_DRIVER} ## Driver do banco de dados (Não obrigatório)
-   jpa:
-     hibernate:
-       ddl-auto: "update" ## Com essa configuração o banco de dados é gerado automaticamente ao rodar o código, sem ser necessário configurar manualmente.
-  
-   jwt:
-     secret: ${JWT_SECRET} ## Segredo para as requisições JWT. Atenção: Ela necessariamente precisa estar num padrão Base64. (Link para converter senhas para padrão Base64 aqui: https://www.base64encode.org/)
-   ```
-
-### Instalação front-end
+### Instalação
 
 1. Clone o repositório
    ```sh
-   git clone https://github.com/GustavoCoelho1/ibm-wallet/
+   git clone https://github.com/GustavoCoelho1/coelho-store/
    ```
+   
 2. Instale os pacotes npm
    ```sh
    npm install
    ```
-3. Crie uma pasta de variáveis de ambiente Angular
+   
+3. Gere um arquivo `.env` e defina-o conforme as instruções do arquivo `.env.example`
+
+4. Inicialize o Prisma Client, para que possamos configurar o banco de dados
    ```sh
-   ng generate environments
+   npx prisma generate
    ```
-4. Seguindo a rota `src/app/environments/` defina o arquivo `environment.development.ts` como:
-   ```ts
-   export const environment = {
-     apiUrl: 'http://localhost:<porta>', //Por padrão a porta Spring boot é 8080
-     jwtSecret: '<secret>', //Defina o mesmo secret que foi colocado no back-end 
-   };
+   
+5. Após se certificar que há uma instância do banco de dados rodando, abra o terminal do projeto e execute o comando do Prisma para gerar o banco de dados automaticamente
+   ```sh
+   npx prisma db push
    ```
+
+Após seguir esses passos você já está pronto para executar o projeto localmente 😉.
 
 <p align="right">(<a href="#readme-top">Voltar ao topo</a>)</p>
 
@@ -173,69 +146,223 @@ O projeto utiliza banco de dados relacional, então é recomendado ter o banco d
 ## Entendendo a estrutura
 
 Atualmente o projeto conta com 4 entidades, onde 3 delas herdam chave estrangeira do Cliente, pois é ele que cria cada uma delas.
+#### Usuário  
+Armazena informações que ficam mais expostas menos sensíveis de um cliente, e com isso serve para interagir com outras entidades dentro de projeto de maneira mais segura.
+* ID (user_cod)
+* Nome (user_nome)
+* Email (user_email)
+* Senha (user_senha)
+
+Exemplo de um dado de usuário:
+```json
+  {
+    "user_nome": "Gustavo",
+    "user_email": "gustavo@exemplo",
+    "user_senha": "exemplo123"
+  }
+```
+
 #### Cliente  
-Armazena informações pessoais e de Login do cliente. Possui os campos de:
-* Nome (name)
-* Email (email)
-* Senha (password)
+Armazena informações pessoais privadas de um cliente. Possui os campos de:
+* ID (cli_cod)
+* Nome (cli_nome)
+* Idade (cli_idade)
+* Celular (cli_celular)
+* Código de usuário (user_cod_fk) (Chave estrangeira)
 
 Exemplo de um dado de cliente:
 ```json
   {
-    "name": "Gustavo",
-    "email": "gustavo@exemplo",
-    "password": "exemplo123"
+    "cli_nome": "Gustavo",
+    "cli_idade": 19,
+    "cli_celular": "(11)90000-0000",
+    "user_cod_fk": "000-000-000-000"
   }
 ```
 
-#### Transação
-Armazena informações das transações efutuadas. Possui os campos de:
-* Data de transação (date)
-* Valor da transação (value)
-* ID de cliente (client_id) (Chave estrangeira)
-* ID de categoria (category_id) (Chave estrangeira)
-* ID de destinatário/remetente (recipient_id) (Chave estrangeira)
+#### Endereço  
+Armazena informações de endereço de um cliente. Possui os campos
+* ID (end_cod)
+* CEP (end_cep)
+* Bairro (end_bairro)
+* Rua (end_rua)
+* Número da casa (end_ruanum)
+* Cidade (end_cidade)
+* Estado (end_estado)
 
-Exemplo de um dado de uma transação:
+Exemplo de um dado de endereço:
 ```json
   {
-    "date": "2024-02-01",
-    "value": 20.0,
-    "client_id": 1,
-    "category_id": 1,
-    "recipient_id": 1,
+    "end_cep": "07010-000",
+    "end_bairro": "Bairro dos exemplos",
+    "end_rua": "Rua dos exemplos",
+    "end_ruanum": 1,
+    "end_cidade": "Guarulhos",
+    "end_estado": "SP",
+  }
+```
+
+#### Cliente/Endereço (Tabela relacional)
+Relaciona um código de endereço com um código de cliente (Relação muitos para muitos). Possui os campos de:
+* ID (cliend_cod)
+* Código do endereço (end_cod_fk) (Chave estrangeira)
+* Código do cliente (cli_cod_fk) (Chave estrangeira)
+
+Exemplo de um dado dessa tabela:
+```json
+  {
+    "cli_cod_fk": "000-000-000-000",
+    "end_cod_fk": "000-000-000-000"
   }
 ```
 
 #### Categoria
-Armazena informações do tipo/categoria de uma transação. Possui os campos de:
-* Nome (name)
-* ID de cliente (client_id) (Chave estrangeira)
+Armazena informações de categoria de um Produto. Possui os campos de:
+* ID (cat_cod)
+* Nome (cat_nome)
 
 Exemplo de um dado de uma categoria:
 ```json
   {
-    "name": "Alimentação"
-    "client_id": 1,
+    "cat_nome": "Bolsas e mochilas"
   }
 ```
 
-#### Destinatário/Remetente
-Armazena informações do destinatário ou remetente de um tipo de transação.
-* Nome (name)
-* ID de cliente (client_id) (Chave estrangeira)
+#### Marca
+Armazena informações da Marca de uma Produto. Possui os campos de:
+* ID (marca_cod)
+* Nome (marca_nome)
 
 Exemplo de um dado de uma categoria:
 ```json
   {
-    "name": "Restaurante XYZ"
-    "client_id": 1,
+    "marca_nome": "Gucci"
+  }
+```
+
+#### Produto
+Armazena informações de um Produto do site. Possui os campos de:
+* ID (prod_cod)
+* Nome (prod_nome)
+* Descrição (prod_descricao)
+* Código de barras (prod_codbarra)
+* Preço (prod_preco)
+* Quantidade em estoque (prod_estoque)
+* Data de criação (prod_dtcriacao)
+* Código de categoria (cat_cod_fk) (Chave estrangeira)
+* Código de marca (marca_cod_fk) (Chave estrangeira)
+
+Exemplo de um dado de um produto:
+```json
+  {
+    "prod_nome": "Camisa Gucci Listrada Verde",
+    "prod_descricao": "Muito conforto e elegância",
+    "prod_codbarra": 898088908,
+    "prod_preco": 199,
+    "prod_estoque": 10,
+    "prod_dtcriacao": "1707446945326", //Gerado automaticamente
+    "cat_cod_fk": "000-000-000-000",
+    "marca_cod_fk": "000-000-000-000",
+  }
+```
+
+#### Avaliação do produto
+Armazena informações de feedback sobre um Produto do site. Possui os campos de:
+* ID (avaliacao_cod)
+* Quantidade de estrelas (avaliacao_estrelas)
+* Comentário (avaliacao_comentario)
+* Data de publicação (avaliacao_data)
+* Código de usuário (user_cod_fk) (Chave estrangeira)
+* Código de produto (prod_cod_fk) (Chave estrangeira)
+
+Exemplo de um dado de uma avaliação:
+```json
+  {
+    "avaliacao_estrelas": 5,
+    "avaliacao_comentario": "Comprei para o minha filha e ela amou!",
+    "avaliacao_data": "1707446945326", //Gerado automaticamente
+    "user_cod_fk": "000-000-000-000",
+    "prod_cod_fk": "000-000-000-000"
+  }
+```
+
+#### Produtos favoritados
+Armazena informações dos produtos que foram marcados como "favorito" por um usuário. Possui os campos de:
+* ID (fav_cod)
+* Ativo (fav_active)
+* Código de usuário (user_cod_fk) (Chave estrangeira)
+* Código de produto (prod_cod_fk) (Chave estrangeira)
+
+Exemplo de um dado dessa entidade:
+```json
+  {
+    "fav_active": true,
+    "user_cod_fk": "000-000-000-000",
+    "prod_cod_fk": "000-000-000-000"
+  }
+```
+
+#### Imagens do produto
+Armazena informações de todas as fotos que um Produto pode possuir. Possui os campos de:
+* ID (img_cod)
+* Link da imagem (img_link)
+* Ordem que a imagem deve assumir (Primeira, segunda, terceira, ...) (img_ordem)
+* Posicionamento em que imagem deve ser exibida (Meio, esquerda, direita) (img_position)
+* Código de produto (prod_cod_fk) (Chave estrangeira) 
+
+Exemplo de um dado dessa entidade:
+```json
+  {
+    "img_link": "https://linkdaimagem.com/img",
+    "img_ordem": 1,
+    "img_position": "center",
+    "prod_cod_fk": "000-000-000-000"
+  }
+```
+
+#### Pedido
+Armazena informações de Pedido de um Cliente. Possui os campos de:
+* ID (ped_cod)
+* Status (Em aberto, concluído ou erro) (ped_status)
+* Data (ped_data)
+* Valor total (ped_valortotal)
+* Código de cliente (cli_cod_fk) (Chave estrangeira) 
+
+Exemplo de um dado dessa entidade:
+```json
+  {
+    "ped_status": "OK",
+    "ped_data": "1707446945326", //Gerado automaticamente
+    "ped_valortotal": 700,
+    "cli_cod_fk": "000-000-000-000"
+  }
+```
+
+#### Item do pedido
+Armazena informações de um item/linha contido em um Pedido. Possui os campos de:
+* ID (item_cod)
+* Quantidade deste item (item_quantidade)
+* Descrição (item_descricao)
+* Valor unitário (item_vlrunitario)
+* Valor total (item_vlrtotal)
+* Código de produto (prod_cod_fk) (Chave estrangeira) 
+* Código do Pedido (ped_cod_fk) (Chave estrangeira) 
+
+Exemplo de um dado dessa entidade:
+```json
+  {
+    "item_quantidade": 2,
+    "item_descricao": "Camisa Gucci Listrada Verde",
+    "item_vlrunitario": 199,
+    "item_vlrtotal": 398,
+    "prod_cod_fk": "000-000-000-000",
+    "ped_cod_fk": "000-000-000-000"
   }
 ```
 
 <p align="right">(<a href="#readme-top">Voltar ao topo</a>)</p>
 
-
+<!--
 ## Como utilizar?
 <a name="como-utilizar"></a>
 1. Fazer o cadastro  
@@ -260,7 +387,6 @@ Exemplo:
 <img src="https://github.com/GustavoCoelho1/ibm-wallet/assets/92497249/b3b164fd-63fd-4653-a9ab-a09cb150f924" alt="Logo" width="500">
 
 <p align="right">(<a href="#readme-top">Voltar ao topo</a>)</p>
-
 -->
 
 ## Licença MIT
