@@ -12,6 +12,7 @@ import CarrinhoMobileButton from './MobileButtons/CarrinhoButton';
 import UserMobileButton from './MobileButtons/UserButton';
 import InicioMobileButton from './MobileButtons/InicioButton';
 import { BiArrowBack } from 'react-icons/bi';
+import Router from 'next/router';
 
 const mobileLinksVariants = {
     show: {
@@ -48,11 +49,13 @@ const NavBar: React.FC = () => {
             transition={{ duration: 0.3 }}
             className={styles.navContainer}
         >
-            <div className="text-white">Logo</div>
+            <button className="text-white" onClick={() => Router.push('/')}>
+                Coelho Store
+            </button>
 
-            <div className="flex w-3/5 sm:w-2/5">
+            {/*<div className="flex w-3/5 sm:w-2/5">
                 <SearchBar />
-            </div>
+            </div>*/}
 
             <ul className={styles.navLinksContainer}>
                 <InicioButton />

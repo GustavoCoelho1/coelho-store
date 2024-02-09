@@ -4,6 +4,8 @@ export const typeDefs = gql`
     type Categoria {
         cat_cod: ID!
         cat_nome: String!
+
+        produtos: [Produto!]!
     }
 
     type Query {

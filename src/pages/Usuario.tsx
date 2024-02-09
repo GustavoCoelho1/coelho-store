@@ -45,8 +45,8 @@ const Usuario = () => {
     }, [data]);
 
     const handleMyOrderClick = () => {
-        setModalVisible(true);
-        setModalContent(<MyOrder client={client} />);
+        // setModalVisible(true);
+        // setModalContent(<MyOrder client={client} />);
     };
 
     return (
@@ -92,7 +92,7 @@ const Usuario = () => {
                         </div>
                     </div>
                     <div className="flex w-full flex-col items-center">
-                        <button className="flex w-full items-center justify-center rounded-xl bg-white py-6 px-10 text-lg text-violet-600">
+                        <button className="flex w-full items-center justify-center rounded-xl bg-white px-10 py-6 text-lg text-violet-600">
                             <span className="flex items-center">
                                 <BsGear className="mr-3" />
                                 <span>Meus dados</span>
@@ -101,7 +101,7 @@ const Usuario = () => {
                         <Divider $margin="my-1" $size="w-10/12" />
                         <button
                             onClick={() => handleMyOrderClick()}
-                            className="flex w-full items-center justify-center rounded-xl bg-white py-6 px-10 text-lg text-violet-600"
+                            className="flex w-full items-center justify-center rounded-xl bg-white px-10 py-6 text-lg text-violet-600"
                         >
                             <span className="flex items-center">
                                 <BsCartCheck className="mr-3" />
@@ -109,7 +109,7 @@ const Usuario = () => {
                             </span>
                         </button>
                         <Divider $margin="my-1" $size="w-10/12" />
-                        <button className="flex w-full items-center justify-center rounded-xl bg-white py-6 px-10 text-lg text-violet-600">
+                        <button className="flex w-full items-center justify-center rounded-xl bg-white px-10 py-6 text-lg text-violet-600">
                             <span className="flex items-center">
                                 <BsHeart className="mr-3" />
                                 <span>Favoritos</span>

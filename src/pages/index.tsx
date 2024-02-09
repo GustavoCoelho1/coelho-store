@@ -5,30 +5,36 @@ import Head from 'next/head';
 import ProdutosList from 'components/common/ui/ProdutosList';
 import { gql, useQuery } from '@apollo/client';
 import { ThreeDots } from 'react-loader-spinner';
+import { iProduto } from 'types/Produto';
 
-const TODOS_PRODUTOS = gql`
+const TODOS_PRODUTOS_POR_CATEGORIA = gql`
     query {
-        TODOS_PRODUTOS: allProdutos {
-            prod_cod
-            prod_nome
-            prod_preco
-            categoria {
-                cat_nome
-            }
-            marca {
-                marca_nome
-            }
-            produto_imagem {
-                img_link
-                img_ordem
-                img_position
+        TODOS_PRODUTOS_POR_CATEGORIA: allCategorias {
+            cat_nome
+            produtos {
+                prod_cod
+                prod_nome
+                prod_preco
+                marca {
+                    marca_nome
+                }
+                produto_imagem {
+                    img_link
+                    img_ordem
+                    img_position
+                }
             }
         }
     }
 `;
 
+export interface iHomeProductsData {
+    cat_nome: string;
+    produtos: iProduto[];
+}
+
 const Home: NextPage = () => {
-    const { data, loading, error } = useQuery(TODOS_PRODUTOS);
+    const { data, loading, error } = useQuery(TODOS_PRODUTOS_POR_CATEGORIA);
 
     return (
         <>
@@ -56,25 +62,48 @@ const Home: NextPage = () => {
                     />
                 </div>
 
-                {loading ? (
-                    <ThreeDots
-                        width="100"
-                        height="100"
-                        color="#7c3aed"
-                        ariaLabel="Loading..."
-                    />
-                ) : error ? (
-                    <span className="m-5 text-xl text-violet-900">
-                        Houve um erro ao buscar podutos, tente novamente mais
-                        tarde!
-                    </span>
-                ) : data?.TODOS_PRODUTOS.length > 0 ? (
-                    <ProdutosList data={data?.TODOS_PRODUTOS} />
-                ) : (
-                    <span className="m-5 text-xl text-violet-900">
-                        Ainda não há produtos cadastrados!
-                    </span>
-                )}
+                <div className="container flex flex-col gap-10 sm:pt-10">
+                    {loading ? (
+                        <ThreeDots
+                            width="100"
+                            height="100"
+                            color="#7c3aed"
+                            ariaLabel="Loading..."
+                        />
+                    ) : error ? (
+                        <span className="m-5 text-xl text-violet-900">
+                            Houve um erro ao buscar podutos, tente novamente
+                            mais tarde!
+                        </span>
+                    ) : data?.TODOS_PRODUTOS_POR_CATEGORIA.length > 0 ? (
+                        data?.TODOS_PRODUTOS_POR_CATEGORIA.map(
+                            (prodData, idx) => {
+                                const homeProductData =
+                                    prodData as iHomeProductsData;
+
+                                if (homeProductData.produtos.length > 0) {
+                                    return (
+                                        <div
+                                            key={homeProductData.cat_nome + idx}
+                                            className="flex w-full flex-col gap-6 rounded-xl bg-white p-10 shadow-md shadow-violet-900/25"
+                                        >
+                                            <h1 className="font-bold text-violet-700">
+                                                {homeProductData.cat_nome}
+                                            </h1>
+                                            <ProdutosList
+                                                data={homeProductData.produtos}
+                                            />
+                                        </div>
+                                    );
+                                }
+                            },
+                        )
+                    ) : (
+                        <span className="m-5 text-xl text-violet-900">
+                            Ainda não há produtos cadastrados!
+                        </span>
+                    )}
+                </div>
             </motion.main>
         </>
     );

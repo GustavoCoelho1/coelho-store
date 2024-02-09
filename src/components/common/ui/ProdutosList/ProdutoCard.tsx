@@ -47,25 +47,25 @@ const ProdutoCard: React.FC<Props> = ({ produto }) => {
         >
             <div
                 onClick={() => Router.push(`/produtos/${produto.prod_cod}`)}
-                className="flex flex-col w-full h-full"
+                className="flex h-full w-full flex-col justify-between gap-2"
             >
                 <img
-                    className={`h-40 object-contain self-center rounded-xl`}
+                    className={`h-40 self-center rounded-xl object-contain`}
                     src={produto.produto_imagem[imgCapaIdx].img_link}
                     alt=""
                 />
 
-                <h4 className="mt-4 mb-1 font-bold text-center text-md text-violet-900">
+                <h4 className="text-md text-center font-bold text-violet-900">
                     {produto.prod_nome}
                 </h4>
 
-                <div className="mb-3 flex flex-col justify-center">
-                    <span className="text-sm text-center mr-2 rounded-xl text-violet-400">
+                <div className="flex flex-col justify-center">
+                    <span className="mr-2 rounded-xl text-center text-sm text-violet-400">
                         {produto.marca.marca_nome}
                     </span>
                 </div>
 
-                <div className="w-full flex items-center justify-center pt-3 border-t-2 border-violet-100">
+                <div className="flex w-full items-center justify-center border-t-2 border-violet-100 pt-2">
                     <motion.span
                         animate={isHover ? 'left' : 'center'}
                         variants={{
@@ -80,12 +80,12 @@ const ProdutoCard: React.FC<Props> = ({ produto }) => {
                             )}
                     </motion.span>
 
-                    <div className="w-1/2 flex align-center justify-end">
+                    <div className="align-center flex w-1/2 justify-end">
                         <motion.button
                             variants={buttonsVariant}
                             animate={buttonsAnimate}
                             whileHover={{ scale: 1.05 }}
-                            className="w-10 h-10 flex items-center justify-center text-lg text-white bg-violet-600 p-2 rounded-full mr-1"
+                            className="mr-1 flex h-10 w-10 items-center justify-center rounded-full bg-violet-600 p-2 text-lg text-white"
                         >
                             <BiHeart title="Favoritar produto" />{' '}
                         </motion.button>
@@ -94,7 +94,7 @@ const ProdutoCard: React.FC<Props> = ({ produto }) => {
                             variants={buttonsVariant}
                             animate={buttonsAnimate}
                             whileHover={{ scale: 1.05 }}
-                            className="w-10 h-10 flex items-center justify-center text-lg text-white bg-violet-600 p-2 rounded-full"
+                            className="flex h-10 w-10 items-center justify-center rounded-full bg-violet-600 p-2 text-lg text-white"
                             onClick={(e) => {
                                 e.stopPropagation(); /* handleAddProdutoCarrinho(produto)*/
                             }}
@@ -110,9 +110,9 @@ const ProdutoCard: React.FC<Props> = ({ produto }) => {
 
 const styles = {
     prodCard: `
-        w-60 m-6 p-4
+        w-60 p-4 border border-violet-100
         flex flex-col
-        rounded-2xl bg-white shadow-lg shadow-violet-900/25
+        rounded-2xl bg-white shadow-md shadow-violet-900/25
         cursor-pointer`,
 };
 

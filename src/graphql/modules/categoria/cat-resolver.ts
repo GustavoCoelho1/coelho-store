@@ -102,4 +102,14 @@ export default {
             return del;
         },
     },
+
+    Categoria: {
+        produtos: async (parent, _args, { prismaClient }: PrismaContext) => {
+            return await prismaClient.produto.findMany({
+                where: {
+                    cat_cod_fk: parent.cat_cod,
+                },
+            });
+        },
+    },
 };
