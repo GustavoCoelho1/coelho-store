@@ -310,7 +310,7 @@ const Produto: NextPage<Props> = ({ product }) => {
                             {produto.prod_descricao}
                         </span>
 
-                        <div className="mt-4 flex w-full items-center">
+                        <div className="mt-4 flex w-full items-center justify-center">
                             <button
                                 onClick={() => setAddToCarrinhoVisible(true)}
                                 className="text-md w-11/12 max-w-[500px] self-end rounded-full bg-violet-500 px-4 py-6 text-white sm:text-xl"

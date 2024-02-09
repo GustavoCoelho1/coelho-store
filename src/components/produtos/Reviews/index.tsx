@@ -132,7 +132,9 @@ const Reviews = ({ produto, media, visible, setVisible }: Props) => {
 
                 <div className="flex w-10/12 flex-col">
                     {loading ? (
-                        <span>Carregando...</span>
+                        <span className="w-full text-center">
+                            Carregando...
+                        </span>
                     ) : error ? (
                         <span>
                             Ocorreu um erro ao buscar as avaliações, tente

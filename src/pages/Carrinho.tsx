@@ -29,9 +29,11 @@ const Carrinho = () => {
                 className="flex min-h-screen w-full items-start justify-center bg-violet-100 sm:py-10"
             >
                 <CartProvider>
-                    <List />
-                    <ConfirmOrder />
-                    <ConfirmOrderMobile />
+                    <div className="container flex w-full items-start justify-center gap-5">
+                        <List />
+                        <ConfirmOrder />
+                        <ConfirmOrderMobile />
+                    </div>
                 </CartProvider>
             </motion.main>
         </>

@@ -62,7 +62,7 @@ const Home: NextPage = () => {
                     />
                 </div>
 
-                <div className="container flex flex-col gap-10 sm:pt-10">
+                <div className="container flex flex-col items-center gap-10 sm:pt-10">
                     {loading ? (
                         <ThreeDots
                             width="100"

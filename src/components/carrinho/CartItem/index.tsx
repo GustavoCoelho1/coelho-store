@@ -109,7 +109,7 @@ const CartItem: React.FC<Props> = ({ product }) => {
                                 <button
                                     onClick={() => setIsChecked(!isChecked)}
                                     style={{ maxWidth: '180px' }}
-                                    className="w-26 mb-3 flex items-center justify-center rounded-full bg-violet-800 py-3 px-4 text-sm text-white sm:mr-2 sm:mb-0 sm:hidden"
+                                    className="w-26 mb-3 flex items-center justify-center rounded-full bg-violet-800 px-4 py-3 text-sm text-white sm:mb-0 sm:mr-2 sm:hidden"
                                 >
                                     {isChecked ? (
                                         <>
@@ -126,7 +126,7 @@ const CartItem: React.FC<Props> = ({ product }) => {
                                 <button
                                     onClick={() => handleRemoveClick()}
                                     style={{ maxWidth: '180px' }}
-                                    className="w-26 flex items-center justify-center rounded-full bg-violet-900 py-3 px-4 text-sm text-white"
+                                    className="w-26 flex items-center justify-center rounded-full bg-violet-900 px-4 py-3 text-sm text-white"
                                 >
                                     <IoMdClose className="mr-2 text-xl" />
                                     <span>Excluir</span>
@@ -137,7 +137,7 @@ const CartItem: React.FC<Props> = ({ product }) => {
                 </div>
             </div>
 
-            <div className="mt-6 mb-4 h-0.5 w-10 self-center rounded-2xl bg-violet-100"></div>
+            <div className="mb-4 mt-6 h-0.5 w-10 self-center rounded-2xl bg-violet-100"></div>
         </>
     );
 };
