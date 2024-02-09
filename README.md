@@ -17,7 +17,7 @@
   <p align="center">
     E-commerce completo com gerenciamento de produtos e clientes integrado.
     <br />
-    <a href="" target="_blank">🌐 Ir para site do projeto</a>
+    <a href="https://coelho-store.vercel.app/" target="_blank">🌐 Ir para site do projeto</a>
   </p>
 </div>
 
