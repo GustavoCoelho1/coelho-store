@@ -206,120 +206,132 @@ const Produto: NextPage<Props> = ({ product }) => {
                 transition={{ duration: 0.3 }}
                 className="flex min-h-screen w-screen flex-col items-center justify-start bg-[#101220] sm:py-10"
             >
-                <div className="relative flex w-full flex-col items-center justify-center  rounded-xl bg-white p-8 sm:w-11/12 md:flex-row">
-                    <FavoriteButton {...favButtonConfig} />
+                <div className="container flex w-full max-w-[1200px] flex-col items-center justify-center">
+                    <div className="relative flex w-full flex-col items-center justify-center  rounded-xl bg-white p-8 sm:w-11/12 md:flex-row">
+                        <FavoriteButton {...favButtonConfig} />
 
-                    <div className="mb-6 w-full md:mb-0 md:w-1/2 md:pr-6">
-                        <motion.img
-                            initial={false}
-                            animate={imgLoading ? 'loading' : 'loaded'}
-                            variants={mainImgVariants}
-                            className="hidden h-full max-h-[400px] w-full self-center rounded-xl object-contain md:flex md:h-4/5"
-                            src={activeImage}
-                            alt=""
-                        />
-
-                        <div className="block w-full md:hidden">
-                            <Slider {...sliderSettings}>
-                                {produto.produto_imagem.map((img, idx) => {
-                                    const p =
-                                        idx === 0
-                                            ? 'pr-3'
-                                            : idx ===
-                                              produto.produto_imagem.length - 1
-                                            ? 'pl-3'
-                                            : 'p-0';
-                                    return (
-                                        <div
-                                            key={'prod-slider-' + idx}
-                                            className={`h-[400px] w-full cursor-pointer rounded-xl p-3 ${p}`}
-                                        >
-                                            <div className="relative flex h-full w-full items-center justify-center overflow-hidden rounded-xl border">
-                                                <img
-                                                    className="h-full w-full rounded-xl object-contain"
-                                                    src={img.img_link}
-                                                />
-                                            </div>
-                                        </div>
-                                    );
-                                })}
-                            </Slider>
-                        </div>
-                    </div>
-                    <div className="flex h-full w-full flex-col items-center self-start pl-0 md:w-1/2 md:pl-8">
-                        <div className="mb-6 hidden w-full md:block">
-                            <Slider {...sliderSettings}>
-                                {produto.produto_imagem.map((img, idx) => {
-                                    const p =
-                                        idx === 0
-                                            ? 'pr-3'
-                                            : idx ===
-                                              produto.produto_imagem.length - 1
-                                            ? 'pl-3'
-                                            : 'p-0';
-                                    return (
-                                        <motion.div
-                                            key={idx}
-                                            onClick={() => switchMainImg(img)}
-                                            className={`h-48 w-full cursor-pointer rounded-xl p-3 ${p} sm:h-48`}
-                                        >
-                                            <div className="relative flex h-full w-full items-center justify-center overflow-hidden rounded-xl border">
-                                                <motion.img
-                                                    whileHover={{ scale: 1.2 }}
-                                                    className="h-48 w-full rounded-xl object-contain"
-                                                    src={img.img_link}
-                                                />
-                                            </div>
-                                        </motion.div>
-                                    );
-                                })}
-                            </Slider>
-                        </div>
-
-                        <h3 className="mb-2 mt-4 text-center text-violet-500 md:mb-2">
-                            {produto.marca.marca_nome}
-                        </h3>
-                        <h2 className="mb-3 text-center text-lg font-bold uppercase text-violet-900 xl:text-xl">
-                            {produto.prod_nome}
-                        </h2>
-
-                        <button
-                            onClick={() => setReviewsVisible(true)}
-                            className="flex items-center justify-center"
-                            title={avaliacao.media.toString()}
-                        >
-                            <StartRating
-                                color="text-violet-600"
-                                size={'text-xl'}
-                                stars={avaliacao.media}
+                        <div className="mb-6 w-full md:mb-0 md:w-1/2 md:pr-6">
+                            <motion.img
+                                initial={false}
+                                animate={imgLoading ? 'loading' : 'loaded'}
+                                variants={mainImgVariants}
+                                className="hidden h-full max-h-[400px] w-full self-center rounded-xl object-contain md:flex md:h-4/5"
+                                src={activeImage}
+                                alt=""
                             />
-                            <span className="text-violet-400">
-                                ({avaliacao.quantidade})
-                            </span>
-                        </button>
 
-                        <h1 className="mb-6 mt-6 text-center text-2xl text-violet-500">
-                            {'R$' +
-                                parseFloat(
-                                    produto.prod_preco.toString(),
-                                ).toFixed(2)}
-                        </h1>
+                            <div className="block w-full md:hidden">
+                                <Slider {...sliderSettings}>
+                                    {produto.produto_imagem.map((img, idx) => {
+                                        const p =
+                                            idx === 0
+                                                ? 'pr-3'
+                                                : idx ===
+                                                  produto.produto_imagem
+                                                      .length -
+                                                      1
+                                                ? 'pl-3'
+                                                : 'p-0';
+                                        return (
+                                            <div
+                                                key={'prod-slider-' + idx}
+                                                className={`h-[400px] w-full cursor-pointer rounded-xl p-3 ${p}`}
+                                            >
+                                                <div className="relative flex h-full w-full items-center justify-center overflow-hidden rounded-xl border">
+                                                    <img
+                                                        className="h-full w-full rounded-xl object-contain"
+                                                        src={img.img_link}
+                                                    />
+                                                </div>
+                                            </div>
+                                        );
+                                    })}
+                                </Slider>
+                            </div>
+                        </div>
+                        <div className="flex h-full w-full flex-col items-center self-start pl-0 md:w-1/2 md:pl-8">
+                            <div className="mb-6 hidden w-full md:block">
+                                <Slider {...sliderSettings}>
+                                    {produto.produto_imagem.map((img, idx) => {
+                                        const p =
+                                            idx === 0
+                                                ? 'pr-3'
+                                                : idx ===
+                                                  produto.produto_imagem
+                                                      .length -
+                                                      1
+                                                ? 'pl-3'
+                                                : 'p-0';
+                                        return (
+                                            <motion.div
+                                                key={idx}
+                                                onClick={() =>
+                                                    switchMainImg(img)
+                                                }
+                                                className={`h-48 w-full cursor-pointer rounded-xl p-3 ${p} sm:h-48`}
+                                            >
+                                                <div className="relative flex h-full w-full items-center justify-center overflow-hidden rounded-xl border">
+                                                    <motion.img
+                                                        whileHover={{
+                                                            scale: 1.2,
+                                                        }}
+                                                        className="h-48 w-full rounded-xl object-contain"
+                                                        src={img.img_link}
+                                                    />
+                                                </div>
+                                            </motion.div>
+                                        );
+                                    })}
+                                </Slider>
+                            </div>
 
-                        <span className="mb-5 mt-2 text-justify text-violet-900">
-                            {produto.prod_descricao}
-                        </span>
+                            <h3 className="mb-2 mt-4 text-center text-violet-500 md:mb-2">
+                                {produto.marca.marca_nome}
+                            </h3>
+                            <h2 className="mb-3 text-center text-lg font-bold uppercase text-violet-900 xl:text-xl">
+                                {produto.prod_nome}
+                            </h2>
 
-                        <div className="mt-4 flex w-full items-center justify-center">
                             <button
-                                onClick={() => setAddToCarrinhoVisible(true)}
-                                className="text-md flex w-11/12 max-w-[400px] items-center justify-center gap-4 self-end rounded-full bg-violet-500 px-4 py-4 text-white"
+                                onClick={() => setReviewsVisible(true)}
+                                className="flex items-center justify-center"
+                                title={avaliacao.media.toString()}
                             >
-                                <MdAddShoppingCart
-                                    className="text-lg"
-                                    title="Adicionar produto ao carrinho"
+                                <StartRating
+                                    color="text-violet-600"
+                                    size={'text-xl'}
+                                    stars={avaliacao.media}
                                 />
-                                <span>Adicionar ao carrinho</span>
+                                <span className="text-violet-400">
+                                    ({avaliacao.quantidade})
+                                </span>
                             </button>
+
+                            <h1 className="mb-6 mt-6 text-center text-2xl text-violet-500">
+                                {'R$' +
+                                    parseFloat(
+                                        produto.prod_preco.toString(),
+                                    ).toFixed(2)}
+                            </h1>
+
+                            <span className="mb-5 mt-2 text-justify text-violet-900">
+                                {produto.prod_descricao}
+                            </span>
+
+                            <div className="mt-4 flex w-full items-center justify-center">
+                                <button
+                                    onClick={() =>
+                                        setAddToCarrinhoVisible(true)
+                                    }
+                                    className="text-md flex w-11/12 max-w-[400px] items-center justify-center gap-4 self-end rounded-full bg-violet-500 px-4 py-4 text-white"
+                                >
+                                    <MdAddShoppingCart
+                                        className="text-lg"
+                                        title="Adicionar produto ao carrinho"
+                                    />
+                                    <span>Adicionar ao carrinho</span>
+                                </button>
+                            </div>
                         </div>
                     </div>
                 </div>
