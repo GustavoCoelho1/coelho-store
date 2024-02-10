@@ -32,12 +32,7 @@ const thisVariants = {
 } as Variants;
 
 const Backdrop: React.FC<Props> = ({ show, children, onClick }) => {
-    const { height: winHeight } = useDimensions(window);
-
     const child = useRef();
-    const [childHeight, setChildHeight] = useState(0);
-
-    const childListener = child?.current as any;
 
     useEffect(() => {
         if (show) {
@@ -47,17 +42,9 @@ const Backdrop: React.FC<Props> = ({ show, children, onClick }) => {
         }
     }, [show]);
 
-    useEffect(() => {
-        setChildHeight(childListener?.clientHeight);
-    }, [childListener?.clientHeight]);
-
     return (
         <motion.div
-            className={`fixed top-0 left-0 z-50 flex h-screen w-screen cursor-default justify-center bg-black/60 ${
-                childHeight > winHeight
-                    ? 'items-start overflow-y-scroll py-4'
-                    : 'items-center'
-            }`}
+            className={`fixed left-0 top-0 z-50 flex h-screen w-screen cursor-default items-start justify-center overflow-y-scroll bg-black/60 py-4`}
             onClick={onClick}
             initial={false}
             animate={show ? 'show' : 'hide'}

@@ -12,10 +12,10 @@ const Comment: React.FC<Props> = ({ avaliacao }) => {
 
     return (
         <div className="flex w-full flex-col">
-            <div className="mb-4 flex w-full justify-between">
+            <div className="mb-3 flex w-full justify-between">
                 <div className="flex flex-col items-start justify-center text-violet-600">
                     <div className="mb-1 flex items-center">
-                        <span className="mr-3 font-bold text-violet-800">
+                        <span className="mr-3 text-sm font-bold text-violet-800">
                             {avaliacao.usuario.user_nome}
                         </span>
                         <span className="text-xs text-violet-400">{data}</span>

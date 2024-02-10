@@ -109,7 +109,6 @@ const FormUsuario: React.FC = () => {
                 </div>
 
                 <motion.input
-                    whileHover={{ scale: 1.05 }}
                     value="Próximo"
                     type="submit"
                     variants={myFadeInUp}

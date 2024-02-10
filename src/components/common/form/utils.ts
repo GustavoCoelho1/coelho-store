@@ -102,8 +102,7 @@ export const InputContainer = tw(motion.div)<iInputContainerProps>`
 >;
 
 export const Label = tw.label`
-  text-xl
-  mb-4
+  mb-2
   font-bold
   text-violet-900
   spin
@@ -131,7 +130,7 @@ export const InputText = tw.input<iInputTextProps>`
   ${(p) => (p.$rounded === false ? 'rounded-0' : 'rounded-3xl')}
 
   w-full
-  text-md
+  text-sm
   tracking-wide
   px-4
   py-3
@@ -164,7 +163,7 @@ ${(p) =>
 relative flex items-center justify-center
 
 w-full
-text-md
+text-sm
 tracking-wide
 px-4
 py-3

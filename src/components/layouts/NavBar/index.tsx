@@ -49,46 +49,48 @@ const NavBar: React.FC = () => {
             transition={{ duration: 0.3 }}
             className={styles.navContainer}
         >
-            <button className="text-white" onClick={() => Router.push('/')}>
-                Coelho Store
-            </button>
+            <div className="container flex justify-between">
+                <button className="text-white" onClick={() => Router.push('/')}>
+                    Coelho Store
+                </button>
 
-            {/*<div className="flex w-3/5 sm:w-2/5">
+                {/*<div className="flex w-3/5 sm:w-2/5">
                 <SearchBar />
             </div>*/}
 
-            <ul className={styles.navLinksContainer}>
-                <InicioButton />
-                <CarrinhoButton />
-                <UserButton />
-            </ul>
+                <ul className={styles.navLinksContainer}>
+                    <InicioButton />
+                    <CarrinhoButton />
+                    <UserButton />
+                </ul>
 
-            <div
-                className={styles.mobile}
-                onClick={() => setMobileNavVisible(!mobileNavVisible)}
-            >
-                <MdMenu className="text-xl text-white" />
-            </div>
-
-            <motion.ul
-                initial={false}
-                animate={mobileNavVisible ? 'show' : 'hidden'}
-                className={styles.mobileNavLinksContainer}
-                variants={mobileLinksVariants}
-            >
-                <div className={styles.closeMobile}>
-                    <motion.button
-                        whileHover={{ x: -3, scale: 1.1 }}
-                        onClick={() => setMobileNavVisible(false)}
-                    >
-                        <BiArrowBack className="text-2xl text-white" />
-                    </motion.button>
+                <div
+                    className={styles.mobile}
+                    onClick={() => setMobileNavVisible(!mobileNavVisible)}
+                >
+                    <MdMenu className="text-xl text-white" />
                 </div>
 
-                <InicioMobileButton />
-                <CarrinhoMobileButton />
-                <UserMobileButton />
-            </motion.ul>
+                <motion.ul
+                    initial={false}
+                    animate={mobileNavVisible ? 'show' : 'hidden'}
+                    className={styles.mobileNavLinksContainer}
+                    variants={mobileLinksVariants}
+                >
+                    <div className={styles.closeMobile}>
+                        <motion.button
+                            whileHover={{ x: -3, scale: 1.1 }}
+                            onClick={() => setMobileNavVisible(false)}
+                        >
+                            <BiArrowBack className="text-2xl text-white" />
+                        </motion.button>
+                    </div>
+
+                    <InicioMobileButton />
+                    <CarrinhoMobileButton />
+                    <UserMobileButton />
+                </motion.ul>
+            </div>
         </motion.nav>
     );
 };
@@ -96,8 +98,8 @@ const NavBar: React.FC = () => {
 export const styles = {
     navContainer: `
         h-fit p-4
-        bg-violet-700
-        flex items-center justify-around z-[50]
+        bg-[#101220] to-transparent
+        flex justify-center z-[50]
         fixed top-0 right-0 left-0
     `,
 
@@ -130,7 +132,7 @@ export const styles = {
     `,
 
     navLink: `
-        text-lg py-2 px-3 mx-2 rounded-3xl 
+        py-2 px-3 mx-2 rounded-3xl 
         flex items-center justify-center relative
         text-white border border-white 
         cursor-pointer hover:bg-white hover:text-violet-400

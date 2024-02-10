@@ -63,7 +63,7 @@ const Login: NextPageWithLayout = () => {
                 ? pageFrom
                 : session.data.user.role === 'admin'
                 ? '/admin/Pedidos'
-                : '/Home';
+                : '/';
 
             Router.push(nextPath);
         }

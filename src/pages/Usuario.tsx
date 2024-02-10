@@ -65,7 +65,7 @@ const Usuario = () => {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ duration: 0.3 }}
-                className="flex min-h-screen w-full items-start justify-center bg-violet-100 sm:py-10"
+                className="flex min-h-screen w-full items-start justify-center bg-[#101220] sm:py-10"
             >
                 <div className="flex h-screen w-full max-w-[700px] flex-col items-center bg-white p-10 shadow-md shadow-violet-300 sm:h-auto sm:rounded-3xl">
                     <div className="flex w-full flex-col items-center">

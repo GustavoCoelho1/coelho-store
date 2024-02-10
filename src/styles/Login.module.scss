@@ -1,64 +1,64 @@
 .mainBlock {
-    @apply min-h-screen
-        flex flex-col 
+    @apply flex
+        min-h-screen flex-col 
         md:flex-row;
 }
 
 .presentationBlock {
-    @apply w-full h-36 p-12
-        flex items-center justify-center
-        bg-violet-900
-        md:min-h-screen md:h-full md:w-1/2;
+    @apply flex h-36 w-full
+        items-center justify-center bg-violet-900
+        p-12
+        md:h-full md:min-h-screen md:w-1/2;
 }
 
 .presentationInner {
-    @apply w-full h-full
-        flex flex-col items-center justify-center;
+    @apply flex h-full
+        w-full flex-col items-center justify-center;
 }
 
 .titulo {
-    @apply text-5xl mb-4
-        text-center font-bold
+    @apply mb-4 text-center
+        text-4xl font-bold
         text-white;
 }
 
 .subtitulo {
-    @apply text-sm text-center font-bold text-violet-400;
+    @apply text-center text-sm font-bold text-violet-400;
 }
 
 .formBlock {
-    @apply w-full min-h-[calc(100vh-9rem)] py-12
-        flex flex-col items-center justify-center
-        bg-violet-200
-        md:items-center md:min-h-screen xl:p-12 md:w-1/2;
+    @apply flex min-h-[calc(100vh-9rem)] w-full
+        flex-col items-center justify-center bg-violet-200
+        py-12
+        md:min-h-screen md:w-1/2 md:items-center xl:p-12;
 }
 
 .signCallback {
-    @apply w-4/5 mb-4 p-6 rounded-3xl
-        flex justify-center
-        bg-white shadow-xl shadow-violet-900/20
+    @apply mb-4 flex w-4/5 justify-center
+        rounded-3xl bg-white
+        p-6 shadow-xl shadow-violet-900/20
         sm:w-4/5 lg:w-3/5;
 }
 
 .form {
-    @apply w-4/5 h-fit p-8 rounded-3xl
-        flex flex-col items-center
-        bg-white shadow-xl shadow-violet-900/20
+    @apply flex h-fit w-4/5 flex-col
+        items-center rounded-3xl bg-white
+        p-8 shadow-xl shadow-violet-900/20
         sm:w-4/5 lg:w-3/5;
 }
 
 .inputsBlock {
-    @apply w-11/12 flex flex-col items-start;
+    @apply flex w-11/12 flex-col items-start;
 }
 
 .signMessage {
-    @apply text-sm mt-8 
+    @apply mt-6 text-xs 
         text-violet-900;
 }
 
 .btnSubmit {
-    @apply w-11/12 tracking-wider py-3 rounded-3xl
-        border border-violet-600 text-violet-600
-        hover:bg-violet-600 hover:text-white
-        transition ease-out duration-700;
+    @apply w-11/12 rounded-3xl border border-violet-600 py-3
+        text-sm tracking-wider text-violet-600
+        transition duration-700
+        ease-out hover:bg-violet-600 hover:text-white;
 }

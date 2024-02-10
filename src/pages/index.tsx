@@ -6,6 +6,8 @@ import ProdutosList from 'components/common/ui/ProdutosList';
 import { gql, useQuery } from '@apollo/client';
 import { ThreeDots } from 'react-loader-spinner';
 import { iProduto } from 'types/Produto';
+import { BsFire, BsPhone, BsPhoneFill } from 'react-icons/bs';
+import { BiCategory } from 'react-icons/bi';
 
 const TODOS_PRODUTOS_POR_CATEGORIA = gql`
     query {
@@ -52,7 +54,7 @@ const Home: NextPage = () => {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ duration: 0.3 }}
-                className="flex min-h-screen w-screen flex-col items-center bg-violet-100"
+                className="flex min-h-screen w-screen flex-col items-center bg-[#101220]"
             >
                 <div className="w-full">
                     <img
@@ -62,47 +64,63 @@ const Home: NextPage = () => {
                     />
                 </div>
 
-                <div className="container flex flex-col items-center gap-10 sm:pt-10">
-                    {loading ? (
-                        <ThreeDots
-                            width="100"
-                            height="100"
-                            color="#7c3aed"
-                            ariaLabel="Loading..."
-                        />
-                    ) : error ? (
-                        <span className="m-5 text-xl text-violet-900">
-                            Houve um erro ao buscar podutos, tente novamente
-                            mais tarde!
-                        </span>
-                    ) : data?.TODOS_PRODUTOS_POR_CATEGORIA.length > 0 ? (
-                        data?.TODOS_PRODUTOS_POR_CATEGORIA.map(
-                            (prodData, idx) => {
-                                const homeProductData =
-                                    prodData as iHomeProductsData;
+                <div className="container flex flex-col items-center justify-center sm:pt-10">
+                    <div className="flex w-full items-center gap-2 bg-violet-800 p-4 text-lg font-bold text-white">
+                        {loading ? (
+                            <span>Carregando...</span>
+                        ) : (
+                            <>
+                                <BsFire className="text-xl" />
+                                <span>OFERTAS IMPERDÍVEIS</span>
+                            </>
+                        )}
+                    </div>
+                    <div className="flex w-full flex-col gap-6 bg-white p-10">
+                        {loading ? (
+                            <ThreeDots
+                                width="100"
+                                height="100"
+                                color="#7c3aed"
+                                ariaLabel="Loading..."
+                            />
+                        ) : error ? (
+                            <span className="m-5 text-xl text-violet-900">
+                                Houve um erro ao buscar podutos, tente novamente
+                                mais tarde!
+                            </span>
+                        ) : data?.TODOS_PRODUTOS_POR_CATEGORIA.length > 0 ? (
+                            data?.TODOS_PRODUTOS_POR_CATEGORIA.map(
+                                (prodData, idx) => {
+                                    const homeProductData =
+                                        prodData as iHomeProductsData;
 
-                                if (homeProductData.produtos.length > 0) {
-                                    return (
-                                        <div
-                                            key={homeProductData.cat_nome + idx}
-                                            className="flex w-full flex-col gap-6 rounded-xl bg-white p-10 shadow-md shadow-violet-900/25"
-                                        >
-                                            <h1 className="font-bold text-violet-700">
-                                                {homeProductData.cat_nome}
-                                            </h1>
-                                            <ProdutosList
-                                                data={homeProductData.produtos}
-                                            />
-                                        </div>
-                                    );
-                                }
-                            },
-                        )
-                    ) : (
-                        <span className="m-5 text-xl text-violet-900">
-                            Ainda não há produtos cadastrados!
-                        </span>
-                    )}
+                                    if (homeProductData.produtos.length > 0) {
+                                        return (
+                                            <>
+                                                <div className="flex items-center gap-2 text-violet-800">
+                                                    <BiCategory className="text-lg" />
+                                                    <h1 className="font-bold">
+                                                        {
+                                                            homeProductData.cat_nome
+                                                        }
+                                                    </h1>
+                                                </div>
+                                                <ProdutosList
+                                                    data={
+                                                        homeProductData.produtos
+                                                    }
+                                                />
+                                            </>
+                                        );
+                                    }
+                                },
+                            )
+                        ) : (
+                            <span className="m-5 text-xl text-violet-900">
+                                Ainda não há produtos cadastrados!
+                            </span>
+                        )}
+                    </div>
                 </div>
             </motion.main>
         </>

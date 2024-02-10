@@ -204,9 +204,9 @@ const Produto: NextPage<Props> = ({ product }) => {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ duration: 0.3 }}
-                className="flex min-h-screen w-screen flex-col items-center justify-start bg-violet-100 sm:py-10"
+                className="flex min-h-screen w-screen flex-col items-center justify-start bg-[#101220] sm:py-10"
             >
-                <div className="relative flex w-full flex-col items-center justify-center  bg-white p-8 shadow-lg shadow-violet-500/25 sm:w-11/12 sm:rounded-3xl md:flex-row">
+                <div className="relative flex w-full flex-col items-center justify-center  rounded-xl bg-white p-8 sm:w-11/12 md:flex-row">
                     <FavoriteButton {...favButtonConfig} />
 
                     <div className="mb-6 w-full md:mb-0 md:w-1/2 md:pr-6">
@@ -214,8 +214,7 @@ const Produto: NextPage<Props> = ({ product }) => {
                             initial={false}
                             animate={imgLoading ? 'loading' : 'loaded'}
                             variants={mainImgVariants}
-                            style={{ maxHeight: '650px' }}
-                            className="hidden h-3/5 w-full self-center rounded-xl object-contain md:flex md:h-4/5"
+                            className="hidden h-full max-h-[400px] w-full self-center rounded-xl object-contain md:flex md:h-4/5"
                             src={activeImage}
                             alt=""
                         />
@@ -280,7 +279,7 @@ const Produto: NextPage<Props> = ({ product }) => {
                         <h3 className="mb-2 mt-4 text-center text-violet-500 md:mb-2">
                             {produto.marca.marca_nome}
                         </h3>
-                        <h2 className="mb-3 text-center text-2xl font-bold uppercase text-violet-900 xl:text-3xl">
+                        <h2 className="mb-3 text-center text-lg font-bold uppercase text-violet-900 xl:text-xl">
                             {produto.prod_nome}
                         </h2>
 
@@ -299,29 +298,27 @@ const Produto: NextPage<Props> = ({ product }) => {
                             </span>
                         </button>
 
-                        <h1 className="mb-6 mt-6 text-center text-4xl text-violet-500">
+                        <h1 className="mb-6 mt-6 text-center text-2xl text-violet-500">
                             {'R$' +
                                 parseFloat(
                                     produto.prod_preco.toString(),
                                 ).toFixed(2)}
                         </h1>
 
-                        <span className="mb-10 mt-2 text-justify text-lg text-violet-900">
+                        <span className="mb-5 mt-2 text-justify text-violet-900">
                             {produto.prod_descricao}
                         </span>
 
                         <div className="mt-4 flex w-full items-center justify-center">
                             <button
                                 onClick={() => setAddToCarrinhoVisible(true)}
-                                className="text-md w-11/12 max-w-[500px] self-end rounded-full bg-violet-500 px-4 py-6 text-white sm:text-xl"
+                                className="text-md flex w-11/12 max-w-[400px] items-center justify-center gap-4 self-end rounded-full bg-violet-500 px-4 py-4 text-white"
                             >
-                                Adicionar ao carrinho
-                            </button>
-                            <button
-                                onClick={() => setAddToCarrinhoVisible(true)}
-                                className="ml-4 mr-2 flex items-center justify-center rounded-full border border-violet-600 bg-violet-500 px-6 py-6 text-2xl text-white"
-                            >
-                                <MdAddShoppingCart title="Adicionar produto ao carrinho" />
+                                <MdAddShoppingCart
+                                    className="text-lg"
+                                    title="Adicionar produto ao carrinho"
+                                />
+                                <span>Adicionar ao carrinho</span>
                             </button>
                         </div>
                     </div>

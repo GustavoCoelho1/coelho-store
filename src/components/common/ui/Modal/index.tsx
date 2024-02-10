@@ -32,7 +32,7 @@ const Modal = ({ show, handleClose, children }) => {
             >
                 <div
                     onClick={(e) => e.stopPropagation()}
-                    className="relative flex w-[90%] flex-col items-center justify-center rounded-3xl bg-white p-8 shadow-md sm:min-w-[350px] sm:max-w-[500px]"
+                    className="relative flex w-[90%] flex-col items-center justify-start rounded-3xl bg-white p-8 shadow-md sm:min-w-[350px] sm:max-w-[500px]"
                 >
                     {children}
                 </div>
