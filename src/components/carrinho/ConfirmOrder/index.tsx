@@ -9,11 +9,10 @@ import ErrorMessage from './ErrorMessage';
 
 export const ConfirmOrder = () => {
     const { cartTotal, address, setAddress } = useContext(CartContext);
-    const [errorVisible, setErrorVisible] = useState(false);
 
     return (
         <>
-            <div className="hidden w-1/3 items-center rounded-3xl bg-white p-8 pt-6 shadow-lg shadow-violet-500/25 md:flex-row lg:flex">
+            <div className="hidden w-1/3 items-center rounded-3xl bg-white p-8 pt-6 md:flex-row lg:flex">
                 <div className="flex w-full flex-col items-center">
                     <span className="bold flex items-center text-violet-600">
                         <BiListCheck className="text-3xl" />
@@ -26,7 +25,7 @@ export const ConfirmOrder = () => {
 
                     <div className="flex w-full flex-col">
                         <div className="mb-4 flex w-full justify-between">
-                            <h2 className="text-lg text-violet-900">
+                            <h2 className="text-violet-900">
                                 Total da Compra:
                             </h2>
                             <h1 className="text-lg text-violet-800">
@@ -52,10 +51,8 @@ export const ConfirmOrderMobile = () => {
             <div className="my-4 h-0.5 w-full rounded-xl bg-violet-100" />
 
             <div className="mb-4 flex w-full justify-between">
-                <h2 className="text-lg text-violet-900">Total da Compra:</h2>
-                <h1 className="text-lg text-violet-800">
-                    R$ {cartTotal.toFixed(2)}
-                </h1>
+                <h2 className="text-violet-900">Total da Compra:</h2>
+                <h1 className="text-violet-800">R$ {cartTotal.toFixed(2)}</h1>
             </div>
 
             <CheckoutButton />

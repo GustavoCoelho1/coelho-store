@@ -78,15 +78,15 @@ const CartItem: React.FC<Props> = ({ product }) => {
                     <div className="flex w-full flex-col py-2 pl-8">
                         <div className="flex w-full flex-col sm:flex-row">
                             <div className="flex w-full flex-col sm:w-1/2">
-                                <h2 className="mb-2 block w-40 overflow-hidden text-ellipsis whitespace-nowrap text-lg text-violet-800 md:w-60 md:text-xl lg:w-52 xl:w-64">
+                                <h2 className="mb-2 block w-40 overflow-hidden text-ellipsis whitespace-nowrap text-violet-800 md:w-60 md:text-lg lg:w-52 xl:w-64">
                                     {product.prod_nome}
                                 </h2>
-                                <span className="mb-5 block w-40 overflow-hidden text-ellipsis whitespace-nowrap text-sm text-violet-400 sm:text-base md:w-60 lg:w-52 xl:w-64">
+                                <span className="mb-5 block w-40 overflow-hidden text-ellipsis whitespace-nowrap text-xs text-violet-400 md:w-60 lg:w-52 xl:w-64">
                                     {product.prod_descricao}
                                 </span>
                             </div>
                             <div className="flex w-full sm:w-1/2 sm:justify-end">
-                                <h1 className="mb-4 text-xl text-violet-700 sm:mb-0 md:text-2xl">
+                                <h1 className="mb-4 text-lg text-violet-700 sm:mb-0 md:text-lg">
                                     {'R$' +
                                         parseFloat(
                                             product.prod_preco.toString(),

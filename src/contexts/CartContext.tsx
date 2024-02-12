@@ -17,6 +17,11 @@ interface CartContextProps {
         name: string;
     };
     setAddress: (val: { id: string; name: string }) => void;
+
+    checkoutWarningVisible: boolean;
+    setCheckoutWarningVisible: (val: boolean) => void;
+    checkoutLink: string;
+    setCheckoutLink: (val: string) => void;
 }
 
 const CartContext = createContext({} as CartContextProps);
@@ -37,6 +42,9 @@ export const CartProvider = ({ children }) => {
     );
     const [address, setAddress] = useState({ id: '', name: '' });
     const [cartTotal, setCartTotal] = useState(0);
+
+    const [checkoutWarningVisible, setCheckoutWarningVisible] = useState(false);
+    const [checkoutLink, setCheckoutLink] = useState('');
 
     useEffect(() => {
         const updatedCart = cartStore[thisIdx].carrinhoProdutos.filter(
@@ -59,6 +67,10 @@ export const CartProvider = ({ children }) => {
         setCartTotal,
         address,
         setAddress,
+        checkoutWarningVisible,
+        setCheckoutWarningVisible,
+        checkoutLink,
+        setCheckoutLink,
     };
 
     useEffect(() => {

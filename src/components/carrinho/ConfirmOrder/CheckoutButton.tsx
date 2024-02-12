@@ -1,12 +1,13 @@
 import { gql, useMutation } from '@apollo/client';
 import CartContext from 'contexts/CartContext';
 import Router from 'next/router';
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 import { MoonLoader } from 'react-spinners';
 import { useState } from 'react';
 import { iProdutoImagem } from 'types/ProdutoImagem';
 import ErrorMessage from './ErrorMessage';
 import { useSession } from 'next-auth/react';
+import CheckoutWarning from '../CheckoutWarning';
 
 const CRIAR_CHECKOUT = gql`
     mutation ($data: iCheckout) {
@@ -18,10 +19,17 @@ const CheckoutButton = () => {
     const {
         data: { user },
     } = useSession();
-    const { address, cartTotal, checkedProducts } = useContext(CartContext);
+    const {
+        address,
+        cartTotal,
+        checkedProducts,
+        setCheckoutLink,
+        setCheckoutWarningVisible,
+    } = useContext(CartContext);
 
     const [createCheckout, { loading, error, reset }] =
         useMutation(CRIAR_CHECKOUT);
+
     const [errorVisible, setErrorVisible] = useState(false);
 
     const handleClick = async () => {
@@ -60,7 +68,8 @@ const CheckoutButton = () => {
                 });
 
                 if (!errors) {
-                    Router.push(data.CRIAR_CHECKOUT);
+                    setCheckoutLink(data.CRIAR_CHECKOUT);
+                    setCheckoutWarningVisible(true);
                 }
             } catch (err) {
                 console.log(err);
@@ -73,7 +82,7 @@ const CheckoutButton = () => {
         <>
             <button
                 onClick={() => handleClick()}
-                className={`flex w-full items-center justify-center rounded-3xl px-4 py-3 text-xl text-white ${
+                className={`flex w-full items-center justify-center rounded-3xl px-4 py-3 text-white ${
                     checkedProducts.length > 0 && address.id != ''
                         ? 'bg-violet-600'
                         : 'bg-gray-400'

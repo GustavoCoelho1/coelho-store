@@ -19,13 +19,15 @@ import AddProdutoToCarrinho from '../../components/produtos/AddProductToCart';
 import prismaClient from 'libs/prisma';
 import Reviews from 'components/produtos/Reviews';
 import Router from 'next/router';
+import ProdutosList from 'components/common/ui/ProdutosList';
+import { BiCategory } from 'react-icons/bi';
 
 interface Props {
-    product: string;
+    pageData: string;
 }
 
-const produtoById = async (id) => {
-    return await prismaClient.produto
+const productPageData = async (id) => {
+    const product = await prismaClient.produto
         .findUnique({
             where: {
                 prod_cod: id,
@@ -40,20 +42,41 @@ const produtoById = async (id) => {
         })
         .catch((err) => {
             throw new Error('O código informado não é válido!');
+        });
+
+    const similarProducts = await prismaClient.produto
+        .findMany({
+            where: {
+                cat_cod_fk: product.cat_cod_fk,
+                NOT: {
+                    prod_cod: product.prod_cod,
+                },
+            },
+            include: {
+                produto_imagem: true,
+                marca: true,
+            },
+        })
+        .catch((err) => {
+            throw new Error('Houve um erro ao carregar dados da página!');
         })
         .finally(() => prismaClient.$disconnect());
+
+    return { product, similarProducts };
 };
 
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
     const { params } = ctx;
 
-    const req = await produtoById(params.id);
+    const req = await productPageData(params.id);
 
-    const product = JSON.stringify(req);
+    const pageData = JSON.stringify(req);
+
+    console.log(pageData);
 
     return {
         props: {
-            product,
+            pageData,
         },
     };
 };
@@ -87,8 +110,10 @@ const toastContainerSettings = {
     theme: 'light',
 } as ToastContainerProps;
 
-const Produto: NextPage<Props> = ({ product }) => {
-    const produto = JSON.parse(product) as iProduto;
+const Produto: NextPage<Props> = ({ pageData }) => {
+    const data = JSON.parse(pageData);
+    const produto = data.product as iProduto;
+    const produtosSimilares = data.similarProducts as iProduto[];
 
     const session = useSession();
     const [userId, setUserId] = useState('');
@@ -204,10 +229,10 @@ const Produto: NextPage<Props> = ({ product }) => {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ duration: 0.3 }}
-                className="flex min-h-screen w-screen flex-col items-center justify-start bg-[#101220] sm:py-10"
+                className="flex min-h-screen w-screen flex-col items-center justify-start bg-violet-200 sm:py-10"
             >
-                <div className="container flex w-full max-w-[1200px] flex-col items-center justify-center">
-                    <div className="relative flex w-full flex-col items-center justify-center  rounded-xl bg-white p-8 sm:w-11/12 md:flex-row">
+                <div className="container flex w-full max-w-[1200px] flex-col items-center justify-center gap-5">
+                    <div className="relative flex w-full flex-col items-center justify-center bg-white p-8 sm:w-11/12 sm:rounded-xl md:flex-row">
                         <FavoriteButton {...favButtonConfig} />
 
                         <div className="mb-6 w-full md:mb-0 md:w-1/2 md:pr-6">
@@ -334,6 +359,19 @@ const Produto: NextPage<Props> = ({ product }) => {
                             </div>
                         </div>
                     </div>
+                    {produtosSimilares.length > 0 && (
+                        <div className="relative flex w-full flex-col justify-center gap-5 bg-white p-8 sm:w-11/12 sm:rounded-xl">
+                            <div className="flex items-center gap-2 text-violet-800">
+                                <BiCategory className="text-lg" />
+                                <h1 className="font-bold">
+                                    Produtos similares
+                                </h1>
+                            </div>
+                            <ProdutosList
+                                data={produtosSimilares}
+                            ></ProdutosList>
+                        </div>
+                    )}
                 </div>
 
                 <ToastContainer {...toastContainerSettings} />

@@ -98,7 +98,7 @@ const NavBar: React.FC = () => {
 export const styles = {
     navContainer: `
         h-fit p-4
-        bg-[#101220] to-transparent
+        bg-violet-800 to-transparent
         flex justify-center z-[50]
         fixed top-0 right-0 left-0
     `,
@@ -116,7 +116,7 @@ export const styles = {
 
     mobileNavLinksContainer: `
         w-full h-screen top-0 right-0 bg-violet-900
-        flex flex-col items-center fixed z-50
+        flex flex-col items-center fixed z-[50]
     `,
 
     mobileNavLink: `

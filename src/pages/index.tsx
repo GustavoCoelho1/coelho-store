@@ -54,7 +54,7 @@ const Home: NextPage = () => {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ duration: 0.3 }}
-                className="flex min-h-screen w-screen flex-col items-center bg-[#101220]"
+                className="flex min-h-screen w-screen flex-col items-center bg-white sm:bg-[#101220]"
             >
                 <div className="w-full">
                     <img
@@ -64,7 +64,7 @@ const Home: NextPage = () => {
                     />
                 </div>
 
-                <div className="container flex flex-col items-center justify-center sm:pt-10">
+                <div className="container flex flex-col items-center justify-center pb-10 sm:pt-10">
                     <div className="flex w-full items-center gap-2 bg-violet-800 p-4 text-lg font-bold text-white">
                         {loading ? (
                             <span>Carregando...</span>

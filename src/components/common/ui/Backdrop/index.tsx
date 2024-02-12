@@ -44,7 +44,7 @@ const Backdrop: React.FC<Props> = ({ show, children, onClick }) => {
 
     return (
         <motion.div
-            className={`fixed left-0 top-0 z-50 flex h-screen w-screen cursor-default items-start justify-center overflow-y-scroll bg-black/60 py-4`}
+            className={`fixed left-0 top-0 z-[999] flex h-screen w-screen cursor-default items-start justify-center overflow-y-scroll bg-black/60 py-4`}
             onClick={onClick}
             initial={false}
             animate={show ? 'show' : 'hide'}

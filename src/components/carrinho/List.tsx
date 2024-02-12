@@ -15,7 +15,7 @@ const List = () => {
     );
 
     return (
-        <div className="mb-44 flex w-full items-center bg-white p-8 pt-6 shadow-lg shadow-violet-500/25 sm:w-11/12 sm:rounded-3xl md:ml-6 md:mr-4 md:flex-row md:pb-0 lg:w-2/3">
+        <div className="mb-44 flex w-full items-center bg-white p-8 pt-6 sm:w-11/12 sm:rounded-3xl md:ml-6 md:mr-4 md:flex-row md:pb-0 lg:w-2/3">
             <div className="flex w-full flex-col items-center">
                 <span className="bold flex items-center text-2xl text-violet-600">
                     <MdOutlineShoppingCart className="text-3xl" />
@@ -34,7 +34,7 @@ const List = () => {
                             ),
                         )
                     ) : (
-                        <span className="text-md mt-2 mb-6 text-center text-violet-900">
+                        <span className="mb-6 mt-2 text-center text-sm text-violet-900">
                             Ainda não há produtos no carrinho!
                         </span>
                     )}
