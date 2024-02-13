@@ -26,14 +26,19 @@ interface iListItem {
 
 const SearchList: React.FC<Props> = ({ setSelected, setVisible, search }) => {
     const [list, setList] = useState<iListItem[]>([]);
+    const [isLoading, setIsLoading] = useState(false);
 
     const searchBrand = async (brandName: string) => {
+        setIsLoading(true);
+
         const { data } = await GQLClient.query({
             query: MARCAS_POR_NOME,
             variables: {
                 name: brandName,
             },
         });
+
+        setIsLoading(false);
 
         const res = data?.marcasByName;
 
@@ -59,20 +64,22 @@ const SearchList: React.FC<Props> = ({ setSelected, setVisible, search }) => {
     }, [search]);
 
     return (
-        <div className="w-full flex flex-col items-center">
+        <div className="flex w-full flex-col items-center">
             {search.length >= 1 ? (
                 list?.length > 0 ? (
                     list.map((brand) => (
                         <div
                             onClick={() => handleItemClick(brand)}
                             key={brand.marca_cod}
-                            className="w-5/6 py-2 flex justify-center border-b border-violet-200 cursor-pointer"
+                            className="flex w-5/6 cursor-pointer justify-center border-b border-violet-200 py-2"
                         >
                             <span className="text-center">
                                 {brand.marca_nome}
                             </span>
                         </div>
                     ))
+                ) : isLoading ? (
+                    <span>Carregando...</span>
                 ) : (
                     <span>Marca não encontrada!</span>
                 )

@@ -114,14 +114,16 @@ const AlterarCategoriaForm: React.FC<Props> = ({ setUpdate, setVisible }) => {
                 <IconTitle
                     icon={<BiCategory />}
                     title={'Alterar Categoria'}
-                    size={{ icon: 'text-3xl', title: 'text-2xl' }}
+                    size={{ icon: 'text-3xl', title: 'text-lg' }}
                     color={'text-violet-600'}
                 />
 
-                <Divider $margin="mt-2 mb-4" />
+                <Divider $margin="mt-[0] mb-4" />
 
                 <InputContainer $size={12}>
-                    <Label className="w-full text-center text-lg">Código</Label>
+                    <Label className="w-full text-center font-normal">
+                        Código
+                    </Label>
                     <InputIcon
                         register={register}
                         name="codigo"
@@ -133,7 +135,9 @@ const AlterarCategoriaForm: React.FC<Props> = ({ setUpdate, setVisible }) => {
                 <div className="my-3" />
 
                 <InputContainer $size={12}>
-                    <Label className="w-full text-center text-lg">Nome</Label>
+                    <Label className="w-full text-center font-normal">
+                        Nome
+                    </Label>
                     <InputIcon
                         register={register}
                         name="nome"

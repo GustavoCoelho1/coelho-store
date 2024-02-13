@@ -1,10 +1,10 @@
 import { useRef, useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { BiUser } from 'react-icons/bi';
+import { BiLogOut, BiUser } from 'react-icons/bi';
 import { BsCartCheck, BsGear, BsHeart } from 'react-icons/bs';
 import LoadingPage from 'components/common/ui/LoadingPage';
 import Head from 'next/head';
-import { useSession } from 'next-auth/react';
+import { signOut, useSession } from 'next-auth/react';
 import { Divider } from 'components/common/form/utils';
 import MyOrder from 'components/usuario/MyOrder';
 import { gql, useQuery } from '@apollo/client';
@@ -65,9 +65,9 @@ const Usuario = () => {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ duration: 0.3 }}
-                className="flex min-h-screen w-full items-start justify-center bg-[#101220] sm:py-10"
+                className="flex min-h-screen w-full items-start justify-center bg-violet-200 sm:py-10"
             >
-                <div className="flex h-screen w-full max-w-[700px] flex-col items-center bg-white p-10 shadow-md shadow-violet-300 sm:h-auto sm:rounded-3xl">
+                <div className="flex h-screen w-full max-w-[700px] flex-col items-center bg-white p-10 sm:h-auto sm:rounded-3xl">
                     <div className="flex w-full flex-col items-center">
                         <span className="text-xl font-bold text-violet-900">
                             {user.name}
@@ -113,6 +113,16 @@ const Usuario = () => {
                             <span className="flex items-center">
                                 <BsHeart className="mr-3" />
                                 <span>Favoritos</span>
+                            </span>
+                        </button>
+                        <Divider $margin="my-1" $size="w-10/12" />
+                        <button
+                            onClick={() => signOut()}
+                            className="flex w-full items-center justify-center rounded-xl bg-white px-10 py-6 text-lg text-violet-600"
+                        >
+                            <span className="flex items-center">
+                                <BiLogOut className="mr-3" />
+                                <span>Sair</span>
                             </span>
                         </button>
                     </div>

@@ -185,7 +185,7 @@ const Marca: NextPage & AuthProps = () => {
                         <div className="flex w-11/12 flex-col items-center">
                             <IcontTitle
                                 icon={<FiClock />}
-                                title={'Últimos pedidos'}
+                                title={'Últimas marcas'}
                             />
                             <Table columns={marcaColumns} rows={tableData} />
                         </div>

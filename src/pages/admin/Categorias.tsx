@@ -193,7 +193,7 @@ const Categoria: NextPage & AuthProps = () => {
                         <div className="flex w-11/12 flex-col items-center">
                             <IcontTitle
                                 icon={<FiClock />}
-                                title={'Últimos pedidos'}
+                                title={'Últimas categorias'}
                             />
                             <Table
                                 columns={categoriaColumns}

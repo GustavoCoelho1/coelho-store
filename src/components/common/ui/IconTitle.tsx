@@ -12,7 +12,7 @@ interface Props {
 
 const IconTitle: React.FC<Props> = ({ icon, title, size, color }) => {
     const Icon = () => (
-        <div className={`text-xl mr-3 ${size?.icon ? size.icon : 'text-xl'} `}>
+        <div className={`mr-3 text-xl ${size?.icon ? size.icon : 'text-xl'} `}>
             {icon}
         </div>
     );

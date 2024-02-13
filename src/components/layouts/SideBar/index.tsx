@@ -170,12 +170,12 @@ const SideBar = () => {
                         icon={<BiCategory />}
                     />
 
-                    <SideBarButton
+                    {/* <SideBarButton
                         href="/admin/Clientes/"
                         active={isActive}
                         title="Clientes"
                         icon={<RiGroupLine />}
-                    />
+                />*/}
 
                     <SideBarButton
                         href="/admin/Marcas/"
@@ -214,12 +214,12 @@ const SideBar = () => {
                     </motion.button>
                 </div>
 
-                <SideBarButton
+                {/*<SideBarButton
                     href="/admin/Dashboard"
                     active={isActive}
                     title="Dashboard"
                     icon={<BiHomeAlt />}
-                />
+                    />*/}
 
                 <SideBarButton
                     href="/admin/Pedidos/"
@@ -242,12 +242,12 @@ const SideBar = () => {
                     icon={<BiCategory />}
                 />
 
-                <SideBarButton
+                {/*<SideBarButton
                     href="/admin/Clientes/"
                     active={isActive}
                     title="Clientes"
                     icon={<RiGroupLine />}
-                />
+                />*/}
 
                 <SideBarButton
                     href="/admin/Marcas/"

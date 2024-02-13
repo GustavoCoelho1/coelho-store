@@ -110,15 +110,15 @@ const AddCategoriaForm: React.FC<Props> = ({ setUpdate, setVisible }) => {
                 <IconTitle
                     icon={<BiCategory />}
                     title={'Adicionar Categoria'}
-                    size={{ icon: 'text-3xl', title: 'text-2xl' }}
+                    size={{ icon: 'text-2xl', title: 'text-lg' }}
                     color={'text-violet-600'}
                 />
 
-                <Divider $margin="mt-2 mb-4" />
+                <Divider $margin="mt-[0] mb-4" />
 
                 <InputContainer $size={12}>
-                    <Label className="w-full text-center text-lg">
-                        Nome da Categoria
+                    <Label className="w-full text-center font-normal">
+                        Nome
                     </Label>
                     <InputIcon
                         register={register}
@@ -167,7 +167,7 @@ const AddCategoriaForm: React.FC<Props> = ({ setUpdate, setVisible }) => {
                 variants={formVariants}
                 className="flex h-full w-full flex-col items-center justify-center"
             >
-                <BiError className="mb-2 text-6xl text-violet-900" />
+                <BiError className="mb-2 text-5xl text-violet-900" />
                 <span className="text-xl text-violet-900">{error}</span>
             </motion.div>
         </form>

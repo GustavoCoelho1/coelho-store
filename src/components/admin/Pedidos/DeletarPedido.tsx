@@ -108,14 +108,16 @@ const DeletarPedidoForm: React.FC<Props> = ({ setUpdate, setVisible }) => {
                 <IconTitle
                     icon={<BiStore />}
                     title={'Deletar Pedido'}
-                    size={{ icon: 'text-3xl', title: 'text-2xl' }}
+                    size={{ icon: 'text-3xl', title: 'text-lg' }}
                     color={'text-violet-600'}
                 />
 
                 <Divider $margin="mt-2 mb-4" />
 
                 <InputContainer $size={12}>
-                    <Label className="w-full text-center text-lg">Código</Label>
+                    <Label className="w-full text-center font-normal">
+                        Código
+                    </Label>
                     <InputIcon
                         register={register}
                         name="codigo"

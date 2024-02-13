@@ -201,7 +201,6 @@ export const Button = tw(motion.button)<iButtonProps>`
     w-full    
     max-w-sm
     mx-2
-    text-xl
     p-3
     
     flex
