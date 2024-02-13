@@ -41,7 +41,14 @@
       </ul>
     </li>
     <li><a href="#entendendo-a-estrutura">Entendendo a estrutura</a></li>
-    <li><a href="#como-utilizar">Como utilizar?</a></li>
+    <li>
+        <a href="#como-utilizar">Como utilizar?</a>
+        <ul>
+          <li><a href="#como-comprar">Como realizar uma compra?</a></li>
+          <li><a href="#acessar-dashboard-admin">Como acessar o dashboard de administrador?</a></li>
+          <li><a href="#utilizar-dashboard-admin">Como utilizar o dashboard de administrador?</a></li>
+        </ul>
+    </li>
     <li><a href="#licença-mit">Licença MIT</a></li>
     <li><a href="#contato">Contato</a></li>
   </ol>
@@ -95,6 +102,7 @@ Para o checkout dos produtos é utilizado a API de checkout do Stripe e para o a
 Para configurar e rodar o projeto localmente vamos precisar seguir alguns passos.
 
 ### Pré-requisitos
+<a name="pre-requisitos"></a>
 * Node.js  
 O angular é construído usando o Node.js e npm (Node Package Manager). Certifique-se de ter o Node.js instalado, pois o npm é incluído com ele. Clique <a href="https://nodejs.org/en">aqui</a> para instalar.
 
@@ -114,7 +122,7 @@ Para fazer o Checkout dos produtos é necessário ter um projeto criado no Strip
 Para o armazenamento de imagem dos produtos é necessário ter um projeto criado no Firebase. Clique <a href="https://stripe.com/br">aqui</a> para criar uma conta e criar um projeto.
 
 ### Instalação
-
+<a name="instalacao"></a>
 1. Clone o repositório
    ```sh
    git clone https://github.com/GustavoCoelho1/coelho-store/
@@ -144,258 +152,372 @@ Após seguir esses passos você já está pronto para executar o projeto localme
 
 
 ## Entendendo a estrutura
+<details>
+  <summary>Usuário</summary>
+  
+  Armazena informações que ficam mais expostas menos sensíveis de um cliente, e com isso serve para interagir com outras entidades dentro de projeto de maneira mais segura.
+  * ID (user_cod)
+  * Nome (user_nome)
+  * Email (user_email)
+  * Senha (user_senha)
 
-Atualmente o projeto conta com 4 entidades, onde 3 delas herdam chave estrangeira do Cliente, pois é ele que cria cada uma delas.
-#### Usuário  
-Armazena informações que ficam mais expostas menos sensíveis de um cliente, e com isso serve para interagir com outras entidades dentro de projeto de maneira mais segura.
-* ID (user_cod)
-* Nome (user_nome)
-* Email (user_email)
-* Senha (user_senha)
+  Exemplo de um dado de usuário:
+  ```json
+    {
+      "user_nome": "Gustavo",
+      "user_email": "gustavo@exemplo",
+      "user_senha": "exemplo123"
+    }
+  ```
+</details>
 
-Exemplo de um dado de usuário:
-```json
-  {
-    "user_nome": "Gustavo",
-    "user_email": "gustavo@exemplo",
-    "user_senha": "exemplo123"
-  }
-```
+<details>
+  <summary>Cliente</summary>
 
-#### Cliente  
-Armazena informações pessoais privadas de um cliente. Possui os campos de:
-* ID (cli_cod)
-* Nome (cli_nome)
-* Idade (cli_idade)
-* Celular (cli_celular)
-* Código de usuário (user_cod_fk) (Chave estrangeira)
+  Armazena informações pessoais privadas de um cliente. Possui os campos de:
+  * ID (cli_cod)
+  * Nome (cli_nome)
+  * Idade (cli_idade)
+  * Celular (cli_celular)
+  * Código de usuário (user_cod_fk) (Chave estrangeira)
 
-Exemplo de um dado de cliente:
-```json
+  Exemplo de um dado de cliente:
+  ```json
   {
     "cli_nome": "Gustavo",
     "cli_idade": 19,
     "cli_celular": "(11)90000-0000",
     "user_cod_fk": "000-000-000-000"
   }
-```
+  ```
+</details>
 
-#### Endereço  
-Armazena informações de endereço de um cliente. Possui os campos
-* ID (end_cod)
-* CEP (end_cep)
-* Bairro (end_bairro)
-* Rua (end_rua)
-* Número da casa (end_ruanum)
-* Cidade (end_cidade)
-* Estado (end_estado)
+<details>
+  <summary>Endereço</summary>
+  
+  Armazena informações de endereço de um cliente. Possui os campos:
+  * ID (end_cod)
+  * CEP (end_cep)
+  * Bairro (end_bairro)
+  * Rua (end_rua)
+  * Número da casa (end_ruanum)
+  * Cidade (end_cidade)
+  * Estado (end_estado)
+  
+  Exemplo de um dado de endereço:
+  ```json
+    {
+      "end_cep": "07010-000",
+      "end_bairro": "Bairro dos exemplos",
+      "end_rua": "Rua dos exemplos",
+      "end_ruanum": 1,
+      "end_cidade": "Guarulhos",
+      "end_estado": "SP",
+    }
+  ```
+</details>
 
-Exemplo de um dado de endereço:
-```json
-  {
-    "end_cep": "07010-000",
-    "end_bairro": "Bairro dos exemplos",
-    "end_rua": "Rua dos exemplos",
-    "end_ruanum": 1,
-    "end_cidade": "Guarulhos",
-    "end_estado": "SP",
-  }
-```
+<details>
+  <summary>Cliente/Endereço (Tabela relacional)</summary>
+  
+  Relaciona um código de endereço com um código de cliente (Relação muitos para muitos). Possui os campos de:
+  * ID (cliend_cod)
+  * Código do endereço (end_cod_fk) (Chave estrangeira)
+  * Código do cliente (cli_cod_fk) (Chave estrangeira)
+  
+  Exemplo de um dado dessa tabela:
+  ```json
+    {
+      "cli_cod_fk": "000-000-000-000",
+      "end_cod_fk": "000-000-000-000"
+    }
+  ```
+</details>
 
-#### Cliente/Endereço (Tabela relacional)
-Relaciona um código de endereço com um código de cliente (Relação muitos para muitos). Possui os campos de:
-* ID (cliend_cod)
-* Código do endereço (end_cod_fk) (Chave estrangeira)
-* Código do cliente (cli_cod_fk) (Chave estrangeira)
+<details>
+  <summary>Categoria</summary>
+  
+  Armazena informações de categoria de um Produto. Possui os campos de:
+  * ID (cat_cod)
+  * Nome (cat_nome)
+  
+  Exemplo de um dado de uma categoria:
+  ```json
+    {
+      "cat_nome": "Bolsas e mochilas"
+    }
+  ```
+</details>
 
-Exemplo de um dado dessa tabela:
-```json
-  {
-    "cli_cod_fk": "000-000-000-000",
-    "end_cod_fk": "000-000-000-000"
-  }
-```
+<details>
+  <summary>Marca</summary>
+  
+  Armazena informações da Marca de uma Produto. Possui os campos de:
+  * ID (marca_cod)
+  * Nome (marca_nome)
+  
+  Exemplo de um dado de uma categoria:
+  ```json
+    {
+      "marca_nome": "Gucci"
+    }
+  ```
+</details>
 
-#### Categoria
-Armazena informações de categoria de um Produto. Possui os campos de:
-* ID (cat_cod)
-* Nome (cat_nome)
+<details>
+  <summary>Produto</summary>
+  
+  Armazena informações de um Produto do site. Possui os campos de:
+  * ID (prod_cod)
+  * Nome (prod_nome)
+  * Descrição (prod_descricao)
+  * Código de barras (prod_codbarra)
+  * Preço (prod_preco)
+  * Quantidade em estoque (prod_estoque)
+  * Data de criação (prod_dtcriacao)
+  * Código de categoria (cat_cod_fk) (Chave estrangeira)
+  * Código de marca (marca_cod_fk) (Chave estrangeira)
 
-Exemplo de um dado de uma categoria:
-```json
-  {
-    "cat_nome": "Bolsas e mochilas"
-  }
-```
+  Exemplo de um dado de um produto:
+  ```json
+    {
+      "prod_nome": "Camisa Gucci Listrada Verde",
+      "prod_descricao": "Muito conforto e elegância",
+      "prod_codbarra": 898088908,
+      "prod_preco": 199,
+      "prod_estoque": 10,
+      "prod_dtcriacao": "1707446945326", //Gerado automaticamente
+      "cat_cod_fk": "000-000-000-000",
+      "marca_cod_fk": "000-000-000-000",
+    }
+  ```
+</details>
 
-#### Marca
-Armazena informações da Marca de uma Produto. Possui os campos de:
-* ID (marca_cod)
-* Nome (marca_nome)
+<details>
+  <summary>Avaliação do produto</summary>
+  
+  Armazena informações de feedback sobre um Produto do site. Possui os campos de:
+  * ID (avaliacao_cod)
+  * Quantidade de estrelas (avaliacao_estrelas)
+  * Comentário (avaliacao_comentario)
+  * Data de publicação (avaliacao_data)
+  * Código de usuário (user_cod_fk) (Chave estrangeira)
+  * Código de produto (prod_cod_fk) (Chave estrangeira)
+  
+  Exemplo de um dado de uma avaliação:
+  ```json
+    {
+      "avaliacao_estrelas": 5,
+      "avaliacao_comentario": "Comprei para o minha filha e ela amou!",
+      "avaliacao_data": "1707446945326", //Gerado automaticamente
+      "user_cod_fk": "000-000-000-000",
+      "prod_cod_fk": "000-000-000-000"
+    }
+  ```
+</details>
 
-Exemplo de um dado de uma categoria:
-```json
-  {
-    "marca_nome": "Gucci"
-  }
-```
+<details>
+  <summary>Produtos favoritados</summary>
+  
+  Armazena informações dos produtos que foram marcados como "favorito" por um usuário. Possui os campos de:
+  * ID (fav_cod)
+  * Ativo (fav_active)
+  * Código de usuário (user_cod_fk) (Chave estrangeira)
+  * Código de produto (prod_cod_fk) (Chave estrangeira)
+  
+  Exemplo de um dado dessa entidade:
+  ```json
+    {
+      "fav_active": true,
+      "user_cod_fk": "000-000-000-000",
+      "prod_cod_fk": "000-000-000-000"
+    }
+  ```
+</details>
 
-#### Produto
-Armazena informações de um Produto do site. Possui os campos de:
-* ID (prod_cod)
-* Nome (prod_nome)
-* Descrição (prod_descricao)
-* Código de barras (prod_codbarra)
-* Preço (prod_preco)
-* Quantidade em estoque (prod_estoque)
-* Data de criação (prod_dtcriacao)
-* Código de categoria (cat_cod_fk) (Chave estrangeira)
-* Código de marca (marca_cod_fk) (Chave estrangeira)
+<details>
+  <summary>Imagens do produto</summary>
+  
+  Armazena informações de todas as fotos que um Produto pode possuir. Possui os campos de:
+  * ID (img_cod)
+  * Link da imagem (img_link)
+  * Ordem que a imagem deve assumir (Primeira, segunda, terceira, ...) (img_ordem)
+  * Posicionamento em que imagem deve ser exibida (Meio, esquerda, direita) (img_position)
+  * Código de produto (prod_cod_fk) (Chave estrangeira) 
+  
+  Exemplo de um dado dessa entidade:
+  ```json
+    {
+      "img_link": "https://linkdaimagem.com/img",
+      "img_ordem": 1,
+      "img_position": "center",
+      "prod_cod_fk": "000-000-000-000"
+    }
+  ```
+</details>
 
-Exemplo de um dado de um produto:
-```json
-  {
-    "prod_nome": "Camisa Gucci Listrada Verde",
-    "prod_descricao": "Muito conforto e elegância",
-    "prod_codbarra": 898088908,
-    "prod_preco": 199,
-    "prod_estoque": 10,
-    "prod_dtcriacao": "1707446945326", //Gerado automaticamente
-    "cat_cod_fk": "000-000-000-000",
-    "marca_cod_fk": "000-000-000-000",
-  }
-```
+<details>
+  <summary>Pedido</summary>
+  
+  Armazena informações de Pedido de um Cliente. Possui os campos de:
+  * ID (ped_cod)
+  * Status (Em aberto, concluído ou erro) (ped_status)
+  * Data (ped_data)
+  * Valor total (ped_valortotal)
+  * Código de cliente (cli_cod_fk) (Chave estrangeira) 
+  
+  Exemplo de um dado dessa entidade:
+  ```json
+    {
+      "ped_status": "OK",
+      "ped_data": "1707446945326", //Gerado automaticamente
+      "ped_valortotal": 700,
+      "cli_cod_fk": "000-000-000-000"
+    }
+  ```
+</details>
 
-#### Avaliação do produto
-Armazena informações de feedback sobre um Produto do site. Possui os campos de:
-* ID (avaliacao_cod)
-* Quantidade de estrelas (avaliacao_estrelas)
-* Comentário (avaliacao_comentario)
-* Data de publicação (avaliacao_data)
-* Código de usuário (user_cod_fk) (Chave estrangeira)
-* Código de produto (prod_cod_fk) (Chave estrangeira)
-
-Exemplo de um dado de uma avaliação:
-```json
-  {
-    "avaliacao_estrelas": 5,
-    "avaliacao_comentario": "Comprei para o minha filha e ela amou!",
-    "avaliacao_data": "1707446945326", //Gerado automaticamente
-    "user_cod_fk": "000-000-000-000",
-    "prod_cod_fk": "000-000-000-000"
-  }
-```
-
-#### Produtos favoritados
-Armazena informações dos produtos que foram marcados como "favorito" por um usuário. Possui os campos de:
-* ID (fav_cod)
-* Ativo (fav_active)
-* Código de usuário (user_cod_fk) (Chave estrangeira)
-* Código de produto (prod_cod_fk) (Chave estrangeira)
-
-Exemplo de um dado dessa entidade:
-```json
-  {
-    "fav_active": true,
-    "user_cod_fk": "000-000-000-000",
-    "prod_cod_fk": "000-000-000-000"
-  }
-```
-
-#### Imagens do produto
-Armazena informações de todas as fotos que um Produto pode possuir. Possui os campos de:
-* ID (img_cod)
-* Link da imagem (img_link)
-* Ordem que a imagem deve assumir (Primeira, segunda, terceira, ...) (img_ordem)
-* Posicionamento em que imagem deve ser exibida (Meio, esquerda, direita) (img_position)
-* Código de produto (prod_cod_fk) (Chave estrangeira) 
-
-Exemplo de um dado dessa entidade:
-```json
-  {
-    "img_link": "https://linkdaimagem.com/img",
-    "img_ordem": 1,
-    "img_position": "center",
-    "prod_cod_fk": "000-000-000-000"
-  }
-```
-
-#### Pedido
-Armazena informações de Pedido de um Cliente. Possui os campos de:
-* ID (ped_cod)
-* Status (Em aberto, concluído ou erro) (ped_status)
-* Data (ped_data)
-* Valor total (ped_valortotal)
-* Código de cliente (cli_cod_fk) (Chave estrangeira) 
-
-Exemplo de um dado dessa entidade:
-```json
-  {
-    "ped_status": "OK",
-    "ped_data": "1707446945326", //Gerado automaticamente
-    "ped_valortotal": 700,
-    "cli_cod_fk": "000-000-000-000"
-  }
-```
-
-#### Item do pedido
-Armazena informações de um item/linha contido em um Pedido. Possui os campos de:
-* ID (item_cod)
-* Quantidade deste item (item_quantidade)
-* Descrição (item_descricao)
-* Valor unitário (item_vlrunitario)
-* Valor total (item_vlrtotal)
-* Código de produto (prod_cod_fk) (Chave estrangeira) 
-* Código do Pedido (ped_cod_fk) (Chave estrangeira) 
-
-Exemplo de um dado dessa entidade:
-```json
-  {
-    "item_quantidade": 2,
-    "item_descricao": "Camisa Gucci Listrada Verde",
-    "item_vlrunitario": 199,
-    "item_vlrtotal": 398,
-    "prod_cod_fk": "000-000-000-000",
-    "ped_cod_fk": "000-000-000-000"
-  }
-```
+<details>
+  <summary>Item do pedido</summary>
+  
+  Armazena informações de um item/linha contido em um Pedido. Possui os campos de:
+  * ID (item_cod)
+  * Quantidade deste item (item_quantidade)
+  * Descrição (item_descricao)
+  * Valor unitário (item_vlrunitario)
+  * Valor total (item_vlrtotal)
+  * Código de produto (prod_cod_fk) (Chave estrangeira) 
+  * Código do Pedido (ped_cod_fk) (Chave estrangeira) 
+  
+  Exemplo de um dado dessa entidade:
+  ```json
+    {
+      "item_quantidade": 2,
+      "item_descricao": "Camisa Gucci Listrada Verde",
+      "item_vlrunitario": 199,
+      "item_vlrtotal": 398,
+      "prod_cod_fk": "000-000-000-000",
+      "ped_cod_fk": "000-000-000-000"
+    }
+  ```
+</details>
 
 <p align="right">(<a href="#readme-top">Voltar ao topo</a>)</p>
 
-<!--
 ## Como utilizar?
 <a name="como-utilizar"></a>
-1. Fazer o cadastro  
-Basta clicar em "Ir para dashboard" na página inicial e depois clicar em "Cadastre-se" na página de login, ou acessar a rota `/signup`
-<img src="https://github.com/GustavoCoelho1/ibm-wallet/assets/92497249/e1e51563-28a8-45f9-a9d7-f088f364993b" alt="Logo" width="400">
 
-3. Fazer o login  
-Basta clicar em "Ir para dashboard" na página inicial, ou acessar a rota `/login` (O acesso durará 1 hora, após isso será solicitado um novo login)
-<img src="https://github.com/GustavoCoelho1/ibm-wallet/assets/92497249/9f5eaa3e-e30d-43cb-8349-daff17254c0f" alt="Logo" width="400">
+<details>
+  <a name="como-comprar"></a>
+  <summary>Como fazer uma compra?</summary>
+  
+  Para fazer uma compra no site basta seguir alguns passos: 
+  
+  1. Fazer o cadastro
+     
+      Basta clicar em "Login" na barra de navegação e depois disso acessar a opção de "Cadastre-se".  
+      <br/>
+      <img src="https://github.com/GustavoCoelho1/coelho-store/assets/92497249/b1d7b8ab-69f9-4c78-9f20-ff670f56ded9" width="400">
+  
+  2. Fazer o login
 
-4. Criando novo produto  
-Após fazer login, você será redirecinado para a rota `/dashboard`, que é a página padrão para a entidade de Transação. Nela clicando no botão "+ Nova transação", você pode inserir um novo registro.
-<img src="https://github.com/GustavoCoelho1/ibm-wallet/assets/92497249/fb068e51-b72b-47e8-b33f-d2d3ddd59eaf" alt="Logo" width="500">
+      Após a conta ser criada você é automaticamente redirecionado para página de login, basta entrar com o e-mail e senha criados.  
+      <br/>
+      <img src="https://github.com/GustavoCoelho1/coelho-store/assets/92497249/28af6a71-5d03-4362-bee6-eb61b81129de" width="400">
 
-Exemplo:
-```txt
-2022-02-01,-18.00,Alimentação,iFood;
-2022-02-02,-18.00,Alimentação,iFood;
-2022-02-01,-18.00,Alimentação,iFood;
-2022-02-02,-18.00,Transporte,Uber;
-```
-<img src="https://github.com/GustavoCoelho1/ibm-wallet/assets/92497249/b3b164fd-63fd-4653-a9ab-a09cb150f924" alt="Logo" width="500">
+  3. Selecionar um produto e adiconar ao carrinho
+
+      Na página principal selecione um produto e depois clique em adicionar ao carrinho, e escolha a quantidade desejada.  
+      <br/>
+      <img src="https://github.com/GustavoCoelho1/coelho-store/assets/92497249/d2f19532-d291-42e1-8035-e07d9c9bd50c" width="400">
+
+  4. Acessar carrinho e ir para checkout
+
+      Na barra de navegação clique em "Carrinho", a e na página de Carrinho clique em "Continuar compra", para ser redirecionado para o Checkout.  
+      <br/>
+      <img src="https://github.com/GustavoCoelho1/coelho-store/assets/92497249/424cd624-126e-4666-835a-c0e314b9df32" width="400">
+
+  4. Checkout
+
+      Na página de Checkout preencha os dados do cartão com as seguintes informações:
+      ```txt
+      • Número do cartão: 4242 4242 4242 4242
+      • CVC (Número de segurança): 123
+      • Mês de vencimento: (Qualquer um depois da data atual)
+      • Nome do titular: (Qualquer um)
+      ```
+      <img src="https://github.com/GustavoCoelho1/coelho-store/assets/92497249/f32bba5f-6b52-49d8-a9ec-7b902500b5de" width="400">
+
+  5. Compra realizada
+
+      Após isso sua compra foi realizada com sucesso!  
+      <br/>
+      <img src="https://github.com/GustavoCoelho1/coelho-store/assets/92497249/71f0da45-979e-4631-86c5-12b0080d4177" width="400">
+
+</details>
+
+<details>
+  <a name="acessar-dashboard-admin"></a>
+  <summary>Como acessar o dashboard de adminastrador?</summary>
+  
+  Para acessar direitos de administrador você deve ter o projeto já instalado e rodando e localmente.
+  
+  1. Criar conta admin
+  
+      Basta clicar em "Login" na barra de navegação e depois disso acessar a opção de "Cadastre-se". Após isso, crie uma conta com suas credenciais (e-mail e senha) admin definidas no arquivo .env
+      ```env
+        ADMIN_USER="" # Aqui você pode definir o e-mail de Administrador, que pode gerenciar todo website.
+        ADMIN_PASSWORD="" # Aqui você pode definir a senha de usuário Administrador, que pode gerenciar todo website.
+      ```
+      <img src="https://github.com/GustavoCoelho1/coelho-store/assets/92497249/f3193a78-e68d-4dca-b7de-c9fc0c5a41e2" width="400">
+  
+  2. Fazer o login com conta admin
+  
+      Basta clicar em "Login" na barra de navegação, e entrar com o e-mail e senha criados.
+     
+      <img src="https://github.com/GustavoCoelho1/coelho-store/assets/92497249/7a2cd073-1298-4b7c-9a7a-5dd235c5ba8b" width="400">
+</details>
+
+<details>
+  <a name="utilizar-dashboard-admin"></a>
+  <summary>Como utilizar o dashboard de adminstrador?</summary>
+  
+  Após fazer o login você é automaticamente redirecionado para o dashboard Admin na rota `/admin/Pedidos`. Na maioria das entidades você poderá Adicionar, Alterar e Excluir. Para fazer isso basta selecionar a opção desejada na aba da entidade em questão. Para            exemplificar vamos utilizar a entidade de Produto.
+     
+  1. Criar Categoria e Marca
+  
+      Como o produto precisa necessariamente de uma Marca e uma Categoria no momento de sua criação, precisamos primeiro criar pelo menos uma dessas entidades. Para isso vamos:
+  
+      1.1 Acessar a opção "Categorias" na aba lateral  
+      <img src="https://github.com/GustavoCoelho1/coelho-store/assets/92497249/d3f3d1e8-9e63-402b-a1f7-0d3e01dfcfcc" width="400">
+      
+      1.2 Depois clicar em "Adicionar"  
+      <img src="https://github.com/GustavoCoelho1/coelho-store/assets/92497249/cb7f14c7-d9d9-4245-ba37-f8279603613e" width="400">
+  
+      1.3 Insirir um nome de categoria e salvar  
+      <img src="https://github.com/GustavoCoelho1/coelho-store/assets/92497249/6a3cae91-fa2f-462b-bb29-f9decbef0e7c" width="400">
+  
+      1.4 Faça o mesmo processo para criar uma Marca.
+  
+  2. Criar Produto
+  
+      Com as entidades necessárias já criadas, basta acessar "Produtos", na barra lateral e "Adicionar", novamente, e então preencher informações do produto como desejar. Após concluir basta salvar.  
+      <br>
+      <img src="https://github.com/GustavoCoelho1/coelho-store/assets/92497249/977503f1-8353-4df6-b4bc-6270b4faddf7" width="400">
+  
+      Para validar se o produto foi criado corretamente você pode checar a tabela de "Últimos produtos", na aba inicial.  
+      <br>
+      <img src="https://github.com/GustavoCoelho1/coelho-store/assets/92497249/9ec9cfa4-2287-4a13-8d24-94582f47e54a" width="400">
+</details>
+
 
 <p align="right">(<a href="#readme-top">Voltar ao topo</a>)</p>
--->
 
 ## Licença MIT
 A permissão é concedida, gratuitamente, a qualquer pessoa que obtenha uma cópia deste arquivo, sem restrição nos direitos de usar, copiar, modificar e mesclar.
 Distribuído sob a lincença MIT. Veja `LICENSE.txt` para mais informações.
 
 <p align="right">(<a href="#readme-top">Voltar ao topo</a>)</p>
-
-
 
 ## Contato
 
