@@ -44,9 +44,9 @@
     <li>
         <a href="#como-utilizar">Como utilizar?</a>
         <ul>
-          <li><a href="#como-comprar">Como realizar uma compra?</a></li>
-          <li><a href="#acessar-dashboard-admin">Como acessar o dashboard de administrador?</a></li>
-          <li><a href="#utilizar-dashboard-admin">Como utilizar o dashboard de administrador?</a></li>
+          <li><a href="#como-utilizar">Como realizar uma compra?</a></li>
+          <li><a href="#como-utilizar">Como acessar o dashboard de administrador?</a></li>
+          <li><a href="#como-utilizar">Como utilizar o dashboard de administrador?</a></li>
         </ul>
     </li>
     <li><a href="#licença-mit">Licença MIT</a></li>
